@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using BigTed;
 using MonoTouch.Dialog;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
@@ -14,9 +15,8 @@ namespace MyExpenses.iOS.Views
 {
   public class ExpenseViewController : DialogViewController
   {
-    private EntryElement name, total;
+    private EntryElement name, total,notes;
     private CheckboxElement billable;
-    private MultilineEntryElement notes;
     private DateElement due;
     private RadioGroup categories;
     private ExpenseViewModel viewModel;
@@ -27,6 +27,14 @@ namespace MyExpenses.iOS.Views
       this.expense = expense;
       viewModel = ServiceContainer.Resolve<ExpenseViewModel>();
       viewModel.Init(this.expense);
+
+      viewModel.IsBusyChanged = (busy) =>
+      {
+        if (busy)
+          BTProgressHUD.Show("Saving...");
+        else
+          BTProgressHUD.Dismiss();
+      };
     }
 
     public override void ViewDidLoad()
@@ -37,8 +45,8 @@ namespace MyExpenses.iOS.Views
       {
         new Section("Expense Details")
         {
-          (name = new EntryElement("Name", string.Empty, string.Empty)),
-          (total = new EntryElement("Total", string.Empty, string.Empty){KeyboardType = UIKeyboardType.NumbersAndPunctuation}),
+          (name = new EntryElement("Name", "Expense Name", string.Empty)),
+          (total = new EntryElement("Total", "1.00", string.Empty){KeyboardType = UIKeyboardType.DecimalPad}),
           (billable = new CheckboxElement("Billable", true)),
           new RootElement("Category", categories = new RadioGroup("category", 0))
           {
@@ -52,7 +60,7 @@ namespace MyExpenses.iOS.Views
         },
         new Section("Notes")
         {
-          (notes = new MultilineEntryElement("Notes", string.Empty, string.Empty))
+          (notes = new EntryElement(string.Empty, "Enter expense notes.", string.Empty))
         } 
 
       };
@@ -71,6 +79,7 @@ namespace MyExpenses.iOS.Views
         viewModel.Billable = billable.Value;
         viewModel.Due = due.DateValue;
         viewModel.Notes = notes.Caption;
+        viewModel.Total = total.Value;
         await viewModel.ExecuteSaveExpenseCommand();
         NavigationController.PopToRootViewController(true);
       });

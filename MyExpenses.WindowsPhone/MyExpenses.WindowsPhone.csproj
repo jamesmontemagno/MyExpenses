@@ -95,17 +95,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\MyEpenses.Android\Helpers\ServiceRegistrar.cs">
+    <Compile Include="..\Shared\ServiceRegistrar.cs">
       <Link>Helpers\ServiceRegistrar.cs</Link>
     </Compile>
     <Compile Include="..\Shared\SQLite.Implementation.cs">
-      <Link>Helpers\SQLite.Implementation.cs</Link>
+      <Link>PlatformSpecific\SQLite.Implementation.cs</Link>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="LocalizedStrings.cs" />
+    <Compile Include="PlatformSpecific\MessageDialog.cs" />
     <Compile Include="Views\ExpensePage.xaml.cs">
       <DependentUpon>ExpensePage.xaml</DependentUpon>
     </Compile>
@@ -215,6 +216,7 @@
       <HintPath>..\packages\Microsoft.Net.Http.2.2.18\lib\sl4-windowsphone71\System.Net.Http.Primitives.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

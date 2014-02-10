@@ -49,7 +49,7 @@
     <Compile Include="Services\ExpenseService.cs" />
     <Compile Include="Interfaces\IBusinessEntity.cs" />
     <Compile Include="Interfaces\IExpenseService.cs" />
-    <Compile Include="Interfaces\IMessage.cs" />
+    <Compile Include="Interfaces\IMessageDialog.cs" />
     <Compile Include="Models\Alert.cs" />
     <Compile Include="Models\Expense.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

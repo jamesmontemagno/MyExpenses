@@ -67,12 +67,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Shared\ServiceRegistrar.cs">
+      <Link>Helpers\ServiceRegistrar.cs</Link>
+    </Compile>
     <Compile Include="..\Shared\SQLite.Implementation.cs">
-      <Link>Helpers\SQLite.Implementation.cs</Link>
+      <Link>PlatformSpecific\SQLite.Implementation.cs</Link>
     </Compile>
     <Compile Include="Adapters\ExpenseAdapter.cs" />
-    <Compile Include="Helpers\ServiceRegistrar.cs" />
     <Compile Include="MyExpensesApplication.cs" />
+    <Compile Include="PlatformSpecific\MessageDialog.cs" />
     <Compile Include="Views\ExpenseActivity.cs" />
     <Compile Include="Views\ExpensesActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />

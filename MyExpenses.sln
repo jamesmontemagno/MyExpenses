@@ -5,7 +5,7 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyExpenses.Portable", "MyExpenses.Portable\MyExpenses.Portable.csproj", "{DC013CAB-92B7-473C-B06D-C1459651640B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyExpenses.Android", "MyEpenses.Android\MyExpenses.Android.csproj", "{F5C0623B-7B4F-4442-862A-0D79B9362E1F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyExpenses.Android", "MyExpenses.Android\MyExpenses.Android.csproj", "{F5C0623B-7B4F-4442-862A-0D79B9362E1F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyExpenses.Tests", "MyExpenses.Tests\MyExpenses.Tests.csproj", "{DB47D56F-7BD3-431B-9E4D-B1613632546A}"
 EndProject
@@ -13,28 +13,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyExpenses.iOS", "MyExpense
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyExpenses.WindowsPhone", "MyExpenses.WindowsPhone\MyExpenses.WindowsPhone.csproj", "{E58F83EB-8F07-401C-9FA3-24971BA2070C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyExpenses.Analysis", "MyExpenses.Analysis\MyExpenses.Analysis.csproj", "{5B8AE9C0-B53F-475C-82F9-A6851C484697}"
+EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 6
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://motz.visualstudio.com/defaultcollection
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = MyExpenses.Portable\\MyExpenses.Portable.csproj
-		SccProjectName1 = MyExpenses.Portable
-		SccLocalPath1 = MyExpenses.Portable
-		SccProjectUniqueName2 = MyEpenses.Android\\MyExpenses.Android.csproj
-		SccProjectName2 = MyEpenses.Android
-		SccLocalPath2 = MyEpenses.Android
-		SccProjectUniqueName3 = MyExpenses.Tests\\MyExpenses.Tests.csproj
-		SccProjectName3 = MyExpenses.Tests
-		SccLocalPath3 = MyExpenses.Tests
-		SccProjectUniqueName4 = MyExpenses.iOS\\MyExpenses.iOS.csproj
-		SccProjectName4 = MyExpenses.iOS
-		SccLocalPath4 = MyExpenses.iOS
-		SccProjectUniqueName5 = MyExpenses.WindowsPhone\\MyExpenses.WindowsPhone.csproj
-		SccProjectName5 = MyExpenses.WindowsPhone
-		SccLocalPath5 = MyExpenses.WindowsPhone
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Ad-Hoc|Any CPU = Ad-Hoc|Any CPU
 		Ad-Hoc|ARM = Ad-Hoc|ARM
@@ -272,6 +253,38 @@ Global
 		{E58F83EB-8F07-401C-9FA3-24971BA2070C}.Release|x86.ActiveCfg = Release|x86
 		{E58F83EB-8F07-401C-9FA3-24971BA2070C}.Release|x86.Build.0 = Release|x86
 		{E58F83EB-8F07-401C-9FA3-24971BA2070C}.Release|x86.Deploy.0 = Release|x86
+		{5B8AE9C0-B53F-475C-82F9-A6851C484697}.Ad-Hoc|Any CPU.ActiveCfg = Release|Any CPU
+		{5B8AE9C0-B53F-475C-82F9-A6851C484697}.Ad-Hoc|Any CPU.Build.0 = Release|Any CPU
+		{5B8AE9C0-B53F-475C-82F9-A6851C484697}.Ad-Hoc|ARM.ActiveCfg = Release|Any CPU
+		{5B8AE9C0-B53F-475C-82F9-A6851C484697}.Ad-Hoc|iPhone.ActiveCfg = Release|Any CPU
+		{5B8AE9C0-B53F-475C-82F9-A6851C484697}.Ad-Hoc|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{5B8AE9C0-B53F-475C-82F9-A6851C484697}.Ad-Hoc|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{5B8AE9C0-B53F-475C-82F9-A6851C484697}.Ad-Hoc|Mixed Platforms.Build.0 = Release|Any CPU
+		{5B8AE9C0-B53F-475C-82F9-A6851C484697}.Ad-Hoc|x86.ActiveCfg = Release|Any CPU
+		{5B8AE9C0-B53F-475C-82F9-A6851C484697}.AppStore|Any CPU.ActiveCfg = Release|Any CPU
+		{5B8AE9C0-B53F-475C-82F9-A6851C484697}.AppStore|Any CPU.Build.0 = Release|Any CPU
+		{5B8AE9C0-B53F-475C-82F9-A6851C484697}.AppStore|ARM.ActiveCfg = Release|Any CPU
+		{5B8AE9C0-B53F-475C-82F9-A6851C484697}.AppStore|iPhone.ActiveCfg = Release|Any CPU
+		{5B8AE9C0-B53F-475C-82F9-A6851C484697}.AppStore|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{5B8AE9C0-B53F-475C-82F9-A6851C484697}.AppStore|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{5B8AE9C0-B53F-475C-82F9-A6851C484697}.AppStore|Mixed Platforms.Build.0 = Release|Any CPU
+		{5B8AE9C0-B53F-475C-82F9-A6851C484697}.AppStore|x86.ActiveCfg = Release|Any CPU
+		{5B8AE9C0-B53F-475C-82F9-A6851C484697}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B8AE9C0-B53F-475C-82F9-A6851C484697}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B8AE9C0-B53F-475C-82F9-A6851C484697}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{5B8AE9C0-B53F-475C-82F9-A6851C484697}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{5B8AE9C0-B53F-475C-82F9-A6851C484697}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{5B8AE9C0-B53F-475C-82F9-A6851C484697}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{5B8AE9C0-B53F-475C-82F9-A6851C484697}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{5B8AE9C0-B53F-475C-82F9-A6851C484697}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5B8AE9C0-B53F-475C-82F9-A6851C484697}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B8AE9C0-B53F-475C-82F9-A6851C484697}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B8AE9C0-B53F-475C-82F9-A6851C484697}.Release|ARM.ActiveCfg = Release|Any CPU
+		{5B8AE9C0-B53F-475C-82F9-A6851C484697}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{5B8AE9C0-B53F-475C-82F9-A6851C484697}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{5B8AE9C0-B53F-475C-82F9-A6851C484697}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{5B8AE9C0-B53F-475C-82F9-A6851C484697}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{5B8AE9C0-B53F-475C-82F9-A6851C484697}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

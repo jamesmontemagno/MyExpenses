@@ -40,6 +40,12 @@ namespace MyExpenses.iOS.Views
     {
       base.ViewDidAppear(animated);
 
+      if (viewModel.NeedsUpdate)
+      {
+        await viewModel.ExecuteLoadExpensesCommand();
+        TableView.ReloadData();
+      }
+
       if (!viewModel.LoadedAlert)
       {
         var alert = await viewModel.ExecuteLoadAlert();
@@ -49,13 +55,6 @@ namespace MyExpenses.iOS.Views
           alertView.Show();
         }
       }
-
-      if (!viewModel.NeedsUpdate)
-        return;
-
-
-      await viewModel.ExecuteLoadExpensesCommand();
-      TableView.ReloadData();
     }
 
     public class ExpensesSource : UITableViewSource
@@ -72,6 +71,18 @@ namespace MyExpenses.iOS.Views
       public override int RowsInSection(UITableView tableview, int section)
       {
         return viewModel.Expenses.Count;
+      }
+
+      public override UITableViewCellEditingStyle EditingStyleForRow(UITableView tableView, NSIndexPath indexPath)
+      {
+        return UITableViewCellEditingStyle.Delete;
+      }
+
+      public async override void CommitEditingStyle(UITableView tableView, UITableViewCellEditingStyle editingStyle, NSIndexPath indexPath)
+      {
+        var expense = viewModel.Expenses[indexPath.Row];
+        await viewModel.ExecuteDeleteExpenseCommand(expense);
+        tableView.ReloadData();
       }
 
       public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
@@ -92,6 +103,9 @@ namespace MyExpenses.iOS.Views
 
       public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
       {
+        if (viewModel.IsBusy)
+          return;
+
         var expense = viewModel.Expenses[indexPath.Row];
         controller.NavigationController.PushViewController(new ExpenseViewController(expense), true);
       }

@@ -1,8 +1,11 @@
+//#define PRELOAD
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using MyExpenses.Portable.DataLayer.SQLiteBase;
 using MyExpenses.Portable.Interfaces;
 using MyExpenses.Portable.Models;
+
 
 namespace MyExpenses.Portable.DataLayer
 {
@@ -29,6 +32,25 @@ namespace MyExpenses.Portable.DataLayer
       database = conn;
       // create the tables
       database.CreateTable<Expense>();
+      
+#if PRELOAD
+      if (!GetItems<Expense>().Any())
+      {
+        for (int i = 0; i < 500; i++)
+        {
+          var expense = new Expense()
+          {
+            Category = "Uncategorized",
+            Billable = true,
+            Due = DateTime.Now.AddDays(i),
+            Name = "Expense " + i,
+            Total = (100 + i).ToString()
+          };
+          SaveItem(expense);
+        }
+      }
+#endif
+
     }
 
     public IEnumerable<T> GetItems<T>() where T : IBusinessEntity, new()

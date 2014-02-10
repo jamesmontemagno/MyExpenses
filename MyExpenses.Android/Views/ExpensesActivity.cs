@@ -39,6 +39,14 @@ namespace MyExpenses.Android.Views
     {
       base.OnStart();
 
+
+
+      if (viewModel.NeedsUpdate)
+      {
+        await viewModel.ExecuteLoadExpensesCommand();
+        RunOnUiThread(() => ((ExpenseAdapter) ListAdapter).NotifyDataSetChanged());
+      }
+
       if (!viewModel.LoadedAlert)
       {
         var alert = await viewModel.ExecuteLoadAlert();
@@ -46,17 +54,12 @@ namespace MyExpenses.Android.Views
         {
           var builder = new AlertDialog.Builder(this);
           builder.SetMessage(alert.Details)
-                 .SetTitle(alert.AlertDateDisplay);
+                 .SetTitle(alert.AlertDateDisplay)
+                 .SetPositiveButton("OK", delegate { });
           var dialog = builder.Create();
           dialog.Show();
         }
       }
-
-      if (!viewModel.NeedsUpdate)
-        return;
-
-      await viewModel.ExecuteLoadExpensesCommand();
-      RunOnUiThread(() => ((ExpenseAdapter) ListAdapter).NotifyDataSetChanged());
     }
 
     protected override void OnListItemClick(ListView l, View v, int position, long id)

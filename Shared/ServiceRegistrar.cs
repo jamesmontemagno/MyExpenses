@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using MyExpenses.PlatformSpecific;
 using MyExpenses.Portable.DataLayer.SQLite;
 using MyExpenses.Portable.DataLayer.SQLiteBase;
 using MyExpenses.Portable.Interfaces;
@@ -35,7 +36,7 @@ namespace MyExpenses.Helpers
 #endif
       
       ServiceContainer.Register<IExpenseService>(()=>new ExpenseService(connection));
-
+      ServiceContainer.Register<IMessageDialog>(()=>new MessageDialog());
       ServiceContainer.Register<ExpensesViewModel>();
       ServiceContainer.Register<ExpenseViewModel>();
     }
