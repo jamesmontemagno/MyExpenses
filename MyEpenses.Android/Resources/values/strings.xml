@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Hello">Hello World, Click Me!</string>
+    <string name="ApplicationName">My Expenses</string>
+  <string name="menu_new_expense">New Expense</string>
+  <string name="menu_save_expense">Save Expense</string>
+</resources>

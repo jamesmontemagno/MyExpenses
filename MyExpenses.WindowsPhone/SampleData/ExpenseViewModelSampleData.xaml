@@ -1,0 +1,14 @@
+﻿<ViewModels:ExpenseViewModel xmlns:ViewModels="clr-namespace:MyExpenses.Portable.ViewModels;assembly=MyExpenses.Portable" xmlns:System="clr-namespace:System;assembly=mscorlib" Billable="True" Category="Integer aenean praesent quisque sed" CanLoadMore="True" Due="02/09/2014 17:44:34" IsBusy="False" Notes="Phasellus maecenas" Name="Aliquam nam vestibulum curabitur" Total="Cras adipiscing mauris dis parturient">
+	<ViewModels:ExpenseViewModel.Categories>
+		<System:String>Accumsan est hac nullam aptent</System:String>
+		<System:String>Vivamus consequat aliquam class</System:String>
+		<System:String>Aliquet vestibulum auctor vestibulum</System:String>
+		<System:String>Leo convallis dignissim</System:String>
+		<System:String>Curae blandit adipiscing duis</System:String>
+		<System:String>Parturient commodo nunc vestibulum</System:String>
+		<System:String>Mus congue</System:String>
+		<System:String>Vestibulum adipiscing</System:String>
+		<System:String>Parturient elementum vestibulum vestibulum cursus</System:String>
+		<System:String>Donec bibendum dictumst</System:String>
+	</ViewModels:ExpenseViewModel.Categories>
+</ViewModels:ExpenseViewModel>
