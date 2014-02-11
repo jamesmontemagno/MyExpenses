@@ -13,6 +13,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.using System;
 using Android.App;
+using MyExpenses.Android;
 using MyExpenses.Portable.Interfaces;
 
 namespace MyExpenses.PlatformSpecific
@@ -21,12 +22,18 @@ namespace MyExpenses.PlatformSpecific
   {
     public void SendMessage(string message, string title = null)
     {
-      var builder = new AlertDialog.Builder(Application.Context);
-      builder.SetMessage(message)
-             .SetTitle(title ??string.Empty)
-             .SetPositiveButton("OK", delegate { });
-      var dialog = builder.Create();
-      dialog.Show();
+      if (MyExpensesApplication.CurrentActivity == null)
+        return;
+
+      MyExpensesApplication.CurrentActivity.RunOnUiThread(() =>
+      {
+        var builder = new AlertDialog.Builder(MyExpensesApplication.CurrentActivity);
+        builder.SetMessage(message)
+          .SetTitle(title ?? string.Empty)
+          .SetPositiveButton("OK", delegate { });
+        var dialog = builder.Create();
+        dialog.Show();
+      });
     }
   }
 }

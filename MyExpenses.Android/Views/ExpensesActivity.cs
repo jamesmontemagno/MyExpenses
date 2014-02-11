@@ -50,13 +50,14 @@ namespace MyExpenses.Android.Views
       ListView.ItemLongClick += async (sender, args) =>
       {
         await viewModel.ExecuteDeleteExpenseCommand(viewModel.Expenses[args.Position]);
+        RunOnUiThread(() => ((ExpenseAdapter)ListAdapter).NotifyDataSetChanged());
       };
     }
 
     protected async override void OnStart()
     {
       base.OnStart();
-
+      MyExpensesApplication.CurrentActivity = this;
       if (viewModel.NeedsUpdate)
       {
         await viewModel.ExecuteLoadExpensesCommand();

@@ -152,6 +152,7 @@ namespace MyExpenses.Portable.ViewModels
       currentExpense.Due = Due.ToUniversalTime();
       currentExpense.Name = Name;
       currentExpense.Notes = Notes;
+      currentExpense.Total = Total;
       try
       {
         await expenseService.SaveExpense(currentExpense);

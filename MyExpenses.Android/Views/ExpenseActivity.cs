@@ -64,6 +64,12 @@ namespace MyExpenses.Android.Views
       billable.Checked = viewModel.Billable;
     }
 
+    protected override void OnStart()
+    {
+      base.OnStart();
+      MyExpensesApplication.CurrentActivity = this;
+    }
+
     public override bool OnCreateOptionsMenu(IMenu menu)
     {
       MenuInflater.Inflate(Resource.Menu.menu_expense, menu);

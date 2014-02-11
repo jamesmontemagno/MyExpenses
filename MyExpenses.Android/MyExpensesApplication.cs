@@ -21,6 +21,7 @@ namespace MyExpenses.Android
   [Application(Theme = "@android:style/Theme.Holo.Light") ]
   public class MyExpensesApplication : Application
   {
+    public static Activity CurrentActivity { get; set; }
     public MyExpensesApplication(IntPtr handle, global::Android.Runtime.JniHandleOwnership transer)
       :base(handle, transer)
     {
