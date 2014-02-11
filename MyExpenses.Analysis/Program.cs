@@ -1,9 +1,21 @@
-﻿using System;
+﻿//
+//  Copyright 2014  Xamarin Inc.
+//
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
+//
+//        http://www.apache.org/licenses/LICENSE-2.0
+//
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 
 namespace MyExpenses.Analysis
@@ -37,7 +49,7 @@ namespace MyExpenses.Analysis
 				},
 
                 new Solution {
-					Name = "WP",
+					Name = "WP8",
 					ProjectFiles = new List<string> {
 						Path.Combine(path, "MyExpenses.WindowsPhone/MyExpenses.WindowsPhone.csproj"),
 						Path.Combine(path, "MyExpenses.Portable/MyExpenses.Portable.csproj")
@@ -179,7 +191,7 @@ namespace MyExpenses.Analysis
       //
       // Output
       //
-      Console.WriteLine("app\tt\tu\ts\tu%\ts%");
+      Console.WriteLine("app\ttotal\tunique\tshared\tunique%\tshared%");
       foreach (var sln in solutions)
       {
 
@@ -191,7 +203,7 @@ namespace MyExpenses.Analysis
           sln.UniqueLinesOfCode / (double)sln.TotalLinesOfCode,
           sln.SharedLinesOfCode / (double)sln.TotalLinesOfCode);
       }
-
+      Console.WriteLine(string.Empty);
       Console.WriteLine("DONE");
     }
   }

@@ -1,11 +1,25 @@
-﻿using Android.App;
+﻿//
+//  Copyright 2014  Xamarin Inc.
+//
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
+//
+//        http://www.apache.org/licenses/LICENSE-2.0
+//
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.using System;
+using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
 using AndroidHUD;
 using MyExpenses.Android.Adapters;
-using MyExpenses.Portable.Services;
+using MyExpenses.Portable.Helpers;
 using MyExpenses.Portable.ViewModels;
 
 namespace MyExpenses.Android.Views
@@ -14,9 +28,8 @@ namespace MyExpenses.Android.Views
   public class ExpensesActivity : ListActivity
   {
     private ExpensesViewModel viewModel;
-    
 
-    protected async override void OnCreate(Bundle bundle)
+    protected override void OnCreate(Bundle bundle)
     {
       base.OnCreate(bundle);
 
@@ -33,32 +46,21 @@ namespace MyExpenses.Android.Views
       };
 
       ListAdapter = new ExpenseAdapter(this, viewModel);
+     
+      ListView.ItemLongClick += async (sender, args) =>
+      {
+        await viewModel.ExecuteDeleteExpenseCommand(viewModel.Expenses[args.Position]);
+      };
     }
 
     protected async override void OnStart()
     {
       base.OnStart();
 
-
-
       if (viewModel.NeedsUpdate)
       {
         await viewModel.ExecuteLoadExpensesCommand();
         RunOnUiThread(() => ((ExpenseAdapter) ListAdapter).NotifyDataSetChanged());
-      }
-
-      if (!viewModel.LoadedAlert)
-      {
-        var alert = await viewModel.ExecuteLoadAlert();
-        if (alert != null)
-        {
-          var builder = new AlertDialog.Builder(this);
-          builder.SetMessage(alert.Details)
-                 .SetTitle(alert.AlertDateDisplay)
-                 .SetPositiveButton("OK", delegate { });
-          var dialog = builder.Create();
-          dialog.Show();
-        }
       }
     }
 

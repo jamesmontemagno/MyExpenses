@@ -13,5 +13,6 @@
         android:fastScrollEnabled="true"
         android:smoothScrollbar="true"
         android:divider="@android:color/transparent"
-        android:dividerHeight="10.0sp" />
+        android:dividerHeight="10.0sp"
+        android:longClickable="true" />
 </LinearLayout>

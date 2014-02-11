@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="en-US" />
-  <App xmlns="" ProductID="{e58f83eb-8f07-401c-9fa3-24971ba2070c}" Title="My Expenses" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="MyExpenses.WindowsPhone author" Description="Sample description" Publisher="MyExpenses.WindowsPhone" PublisherID="{acf36cbc-4ec7-4206-999c-ce8428c86f83}">
+  <App xmlns="" ProductID="{e58f83eb-8f07-401c-9fa3-24971ba2070c}" Title="My Expenses" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Xamarin" Description="Sample description" Publisher="Xamarin" PublisherID="{acf36cbc-4ec7-4206-999c-ce8428c86f83}">
     <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
