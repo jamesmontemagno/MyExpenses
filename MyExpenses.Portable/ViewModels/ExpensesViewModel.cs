@@ -82,7 +82,7 @@ namespace MyExpenses.Portable.ViewModels
 
         foreach (var expense in exps)
         {
-          if(expense.Category == "Transportation")
+
             Expenses.Add(expense);
         }
 
