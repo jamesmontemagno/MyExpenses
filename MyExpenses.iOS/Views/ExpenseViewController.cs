@@ -63,7 +63,7 @@ namespace MyExpenses.iOS.Views
             new Section()
             {
               from category in viewModel.Categories
-              select (Element) new RadioElement(category)
+                select (Element) new RadioElement(category)
             }
           },
           (due = new DateElement("Due Date", DateTime.Now))  

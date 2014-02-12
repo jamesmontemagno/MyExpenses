@@ -31,6 +31,7 @@ namespace MyExpenses.Tests
     public void Init()
     {
       ServiceContainer.Register<IExpenseService>(()=>new ExpenseServiceMock());  
+      ServiceContainer.Register<IMessageDialog>(()=>new MessageDialogMock());
       ServiceContainer.Register<ExpenseViewModel>();
       ServiceContainer.Register<ExpensesViewModel>();
     }

@@ -27,7 +27,7 @@ namespace MyExpenses.Android.Views
   public class ExpenseActivity : Activity
   {
     private ExpenseViewModel viewModel;
-    private EditText notes, name;
+    private EditText notes, name, total;
     private DatePicker date;
     private CheckBox billable;
     private Spinner category;
@@ -54,6 +54,7 @@ namespace MyExpenses.Android.Views
       name = FindViewById<EditText>(Resource.Id.name);
       date = FindViewById<DatePicker>(Resource.Id.date);
       notes = FindViewById<EditText>(Resource.Id.notes);
+      total = FindViewById<EditText>(Resource.Id.total);
       billable = FindViewById<CheckBox>(Resource.Id.billable);
       category = FindViewById<Spinner>(Resource.Id.category);
       category.Adapter = new ArrayAdapter<string>(this, global::Android.Resource.Layout.SimpleSpinnerDropDownItem, viewModel.Categories);
@@ -61,6 +62,7 @@ namespace MyExpenses.Android.Views
       name.Text = viewModel.Name;
       date.DateTime = viewModel.Due;
       notes.Text = viewModel.Notes;
+      total.Text = viewModel.Total;
       billable.Checked = viewModel.Billable;
     }
 
@@ -85,6 +87,7 @@ namespace MyExpenses.Android.Views
           viewModel.Billable = billable.Checked;
           viewModel.Due = date.DateTime;
           viewModel.Notes = notes.Text;
+          viewModel.Total = total.Text;
           viewModel.Category = viewModel.Categories[category.SelectedItemPosition];
           Task.Run(async () =>
           {

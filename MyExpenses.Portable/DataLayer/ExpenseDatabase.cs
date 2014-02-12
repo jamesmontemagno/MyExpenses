@@ -69,11 +69,29 @@ namespace MyExpenses.Portable.DataLayer
 
         var expense = new Expense()
         {
-          Category = "Meals",
+          Category = "Phone",
           Billable = true,
           Due = DateTime.Now.AddDays(2),
-          Name = "Sample Expense",
-          Total = "5.05"
+          Name = "Phone Bill",
+          Total = "65.05"
+        };
+        SaveItem(expense);
+        expense = new Expense()
+        {
+          Category = "Meals",
+          Billable = true,
+          Due = DateTime.Now.AddDays(-2),
+          Name = "Business Dinner",
+          Total = "55.00"
+        };
+        SaveItem(expense);
+        expense = new Expense()
+        {
+          Category = "Transportation",
+          Billable = true,
+          Due = DateTime.Now.AddDays(5),
+          Name = "Rental Car",
+          Total = "75.05"
         };
         SaveItem(expense);
       }

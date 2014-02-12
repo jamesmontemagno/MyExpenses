@@ -79,8 +79,12 @@ namespace MyExpenses.Portable.ViewModels
       try
       {
         var exps = await expenseService.GetExpenses();
+
         foreach (var expense in exps)
-          Expenses.Add(expense);
+        {
+          if(expense.Category == "Transportation")
+            Expenses.Add(expense);
+        }
 
       }
       catch (Exception exception)
@@ -142,7 +146,7 @@ namespace MyExpenses.Portable.ViewModels
         var alert = await ExpenseService.DeserializeObjectAsync<Alert>(response);
 
         messageDialog.SendMessage(alert.Details, alert.AlertDateDisplay);
-
+        return alert;
       }
       catch (Exception exception)
       {
@@ -150,7 +154,6 @@ namespace MyExpenses.Portable.ViewModels
       }
       finally
       {
-        IsBusy = false;
       }
 
       return null;

@@ -189,14 +189,14 @@ namespace MyExpenses.Android
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f080008
-			public const int billable = 2131230728;
-			
-			// aapt resource value: 0x7f08000a
-			public const int category = 2131230730;
+			// aapt resource value: 0x7f080009
+			public const int billable = 2131230729;
 			
 			// aapt resource value: 0x7f08000b
-			public const int date = 2131230731;
+			public const int category = 2131230731;
+			
+			// aapt resource value: 0x7f08000c
+			public const int date = 2131230732;
 			
 			// aapt resource value: 0x7f080001
 			public const int due = 2131230721;
@@ -210,26 +210,29 @@ namespace MyExpenses.Android
 			// aapt resource value: 0x7f080006
 			public const int loadingProgressWheel = 2131230726;
 			
-			// aapt resource value: 0x7f08000f
-			public const int menu_new_expense = 2131230735;
+			// aapt resource value: 0x7f080010
+			public const int menu_new_expense = 2131230736;
 			
-			// aapt resource value: 0x7f08000e
-			public const int menu_save_expense = 2131230734;
+			// aapt resource value: 0x7f08000f
+			public const int menu_save_expense = 2131230735;
 			
 			// aapt resource value: 0x7f080000
 			public const int name = 2131230720;
 			
-			// aapt resource value: 0x7f08000d
-			public const int notes = 2131230733;
+			// aapt resource value: 0x7f08000e
+			public const int notes = 2131230734;
 			
 			// aapt resource value: 0x7f080007
 			public const int textView1 = 2131230727;
 			
-			// aapt resource value: 0x7f08000c
-			public const int textView2 = 2131230732;
+			// aapt resource value: 0x7f08000d
+			public const int textView2 = 2131230733;
 			
-			// aapt resource value: 0x7f080009
-			public const int textView3 = 2131230729;
+			// aapt resource value: 0x7f08000a
+			public const int textView3 = 2131230730;
+			
+			// aapt resource value: 0x7f080008
+			public const int textView4 = 2131230728;
 			
 			// aapt resource value: 0x7f080004
 			public const int textViewStatus = 2131230724;
