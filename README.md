@@ -19,7 +19,7 @@ For Windows Phone you must install SQLite for Windows Phone Extension: http://vi
 
 
 ## How much code is shared?
-I have included an "Analysis Project", which will count the shared lines of code. 90% on iOS, 84% on Windows Phone, and 81% of code is shared the code is shared between projects. All of the Models, Services, View Models, and tons of helper classes are all found in one single PCL library. 
+I have included an "Analysis Project", which will count the shared lines of code. Up to 80% of code is shared across platforms. All of the Models, Services, View Models, and tons of helper classes are all found in one single PCL library. 
 
 ## What technology is used?
 Everything is written in C# with Xamarin with a base PCL library. This project couldn't have been done without the following:
