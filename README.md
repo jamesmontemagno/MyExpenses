@@ -1,7 +1,13 @@
 My Expenses
 ==========
 
-My Expenses Cross Platform Demo - VSToolBox
+My Expenses Cross Platform Demo - VSToolbox
+
+Videos are available on Channel 9:
+
+[Part 1: Cross Platform Mobile Development with Xamarin](http://channel9.msdn.com/Shows/Visual-Studio-Toolbox/Cross-Platform-Development-With-Xamarin)
+
+[Part 2: Using Portable Class Libraries with Xamarin](http://channel9.msdn.com/Shows/Visual-Studio-Toolbox/Using-Portable-Class-Libraries-with-Xamarin)
 
 Expense taking cross platform application for Windows Phone, Android, and iOS built with Xamarin inside of Visual Studio 2013. Expenses are stored locally in a Sqlite-net database. You can add new expenses and edit or delete existing. All business logic is shared in one portable class library.
 
