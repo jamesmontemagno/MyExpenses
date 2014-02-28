@@ -9,6 +9,8 @@ Written in C# with ([Xamarin](http://www.xamarin.com))  **Created in Visual Stud
 
 Open Source Project by ([@JamesMontemagno](http://www.twitter.com/jamesmontemagno)) 
 
+For Windows Phone you must install SQLite for Windows Phone Extension: http://visualstudiogallery.msdn.microsoft.com/cd120b42-30f4-446e-8287-45387a4f40b7
+
 
 ## How much code is shared?
 I have included an "Analysis Project", which will count the shared lines of code. 90% on iOS, 84% on Windows Phone, and 81% of code is shared the code is shared between projects. All of the Models, Services, View Models, and tons of helper classes are all found in one single PCL library. 
@@ -34,8 +36,9 @@ https://components.xamarin.com/view/btprogresshud - Great spinner for iOS
 ### MonoTouch.Dialog
 http://docs.xamarin.com/guides/ios/user_interface/monotouch.dialog/ - A wonderful library for Xamarin.iOS to create user interfaces quick with not a lot of code.
 
-### Sqlite-net
+### Sqlite-net PCL
 https://github.com/praeclarum/sqlite-net - A wonderful library for cross platform sqlite databases.
+Now in PCL form with: https://github.com/oysteinkrog/Sqlite.net-pcl
 
 
 ## License
