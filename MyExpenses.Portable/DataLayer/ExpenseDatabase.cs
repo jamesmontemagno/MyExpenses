@@ -16,9 +16,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MyExpenses.Portable.DataLayer.SQLiteBase;
 using MyExpenses.Portable.Interfaces;
 using MyExpenses.Portable.Models;
+using SQLite.Net;
 
 
 namespace MyExpenses.Portable.DataLayer
@@ -31,7 +31,7 @@ namespace MyExpenses.Portable.DataLayer
   public class ExpenseDatabase
   {
     static object locker = new object();
-
+    
     SQLiteConnection database;
 
     /// <summary>
@@ -111,7 +111,7 @@ namespace MyExpenses.Portable.DataLayer
     {
       lock (locker)
       {
-        return database.Table<T>().FirstOrDefault(x => x.ID == id);
+        return database.Table<T>().FirstOrDefault(x => x.Id == id);
         // Following throws NotSupportedException - thanks aliegeni
         //return (from i in Table<T> ()
         //        where i.ID == id
@@ -123,10 +123,10 @@ namespace MyExpenses.Portable.DataLayer
     {
       lock (locker)
       {
-        if (item.ID != 0)
+        if (item.Id != 0)
         {
           database.Update(item);
-          return item.ID;
+          return item.Id;
         }
         else
         {
@@ -139,7 +139,7 @@ namespace MyExpenses.Portable.DataLayer
     {
       lock (locker)
       {
-        return database.Delete<T>(new T() { ID = id });
+        return database.Delete<T>(id);
       }
     }
   }

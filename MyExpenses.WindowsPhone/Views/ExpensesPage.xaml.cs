@@ -53,7 +53,7 @@ namespace MyExpenses.WindowsPhone.Views
         return;
 
       // Navigate to the new page
-      NavigationService.Navigate(new Uri("/Views/ExpensePage.xaml?selectedItem=" + (MainLongListSelector.SelectedItem as Expense).ID, UriKind.Relative));
+      NavigationService.Navigate(new Uri("/Views/ExpensePage.xaml?selectedItem=" + (MainLongListSelector.SelectedItem as Expense).Id, UriKind.Relative));
 
       // Reset selected item to null (no selection)
       MainLongListSelector.SelectedItem = null;

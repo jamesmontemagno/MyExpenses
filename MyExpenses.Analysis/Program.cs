@@ -153,12 +153,14 @@ namespace MyExpenses.Analysis
           foreach (var inc in q)
           {
             //skip over some things that are added automatically
-            if (inc.Contains("Resource.designer.cs") ||
-                inc.Contains("DebugTrace.cs") ||
-                inc.Contains("LinkerPleaseInclude.cs") ||
-                inc.Contains("AssemblyInfo.cs") ||
-              inc.Contains("Bootstrap.cs") ||
-              inc.Contains(".designer.cs") ||
+            if (inc.Contains("Resource.designer.cs") || //auto generated
+                inc.Contains("DebugTrace.cs") || //not needed mvvmcross
+                inc.Contains("LinkerPleaseInclude.cs") || //not needed mvvmcross
+                inc.Contains("AssemblyInfo.cs") || //in every place
+              inc.Contains("Bootstrap.cs") || //not needed mvvmcross
+              inc.Contains(".designer.cs") || //auto generated, not code
+              inc.Contains(".Designer.cs") || //Android designer file
+              inc.Contains("App.xaml.cs") || //generic WP setup
                             inc.EndsWith(".xaml") ||
                             inc.EndsWith(".xml") ||
                             inc.EndsWith(".axml"))

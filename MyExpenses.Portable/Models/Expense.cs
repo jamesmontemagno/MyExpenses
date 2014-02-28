@@ -15,7 +15,7 @@
 using System;
 
 using MyExpenses.Portable.BusinessLayer.Contracts;
-using MyExpenses.Portable.DataLayer.SQLite;
+using SQLite.Net.Attributes;
 
 namespace MyExpenses.Portable.Models
 {

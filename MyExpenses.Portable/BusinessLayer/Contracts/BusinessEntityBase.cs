@@ -12,7 +12,9 @@
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //    See the License for the specific language governing permissions and
 //    limitations under the License.using System;
-using MyExpenses.Portable.DataLayer.SQLite;
+
+
+using SQLite.Net.Attributes;
 
 namespace MyExpenses.Portable.BusinessLayer.Contracts {
 	/// <summary>
@@ -27,7 +29,7 @@ namespace MyExpenses.Portable.BusinessLayer.Contracts {
 		/// Gets or sets the Database ID.
 		/// </summary>
 		[PrimaryKey, AutoIncrement]
-    public int ID { get; set; }
+    public int Id { get; set; }
 	}
 }
 

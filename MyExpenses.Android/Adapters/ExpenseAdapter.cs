@@ -73,7 +73,7 @@ namespace MyExpenses.Android.Adapters
 
     public override long GetItemId(int position)
     {
-      return viewModel.Expenses[position].ID;
+      return viewModel.Expenses[position].Id;
     }
   }
 }

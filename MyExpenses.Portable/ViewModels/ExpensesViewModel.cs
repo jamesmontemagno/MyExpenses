@@ -113,12 +113,12 @@ namespace MyExpenses.Portable.ViewModels
       try
       {
 
-        await expenseService.DeleteExpense(exp.ID);
-        Expenses.Remove(Expenses.FirstOrDefault(ex => ex.ID == exp.ID));
+        await expenseService.DeleteExpense(exp.Id);
+        Expenses.Remove(Expenses.FirstOrDefault(ex => ex.Id == exp.Id));
 
 
       }
-      catch (Exception)
+      catch (Exception ex)
       {
         Debug.WriteLine("Unable to delete expenses");
       }

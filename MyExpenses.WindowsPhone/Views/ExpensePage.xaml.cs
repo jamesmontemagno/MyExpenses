@@ -48,11 +48,13 @@ namespace MyExpenses.WindowsPhone
         if (NavigationContext.QueryString.TryGetValue("selectedItem", out selectedIndex))
         {
           id = int.Parse(selectedIndex);
-          TextBlockExpense.Text = "edit expense";
+          
         }
        
         await viewModel.Init(id);
         DataContext = viewModel;
+
+        TextBlockExpense.Text = viewModel.Title.ToLower();
       }
 
 

@@ -15,10 +15,10 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MyExpenses.Portable.DataLayer;
-using MyExpenses.Portable.DataLayer.SQLiteBase;
 using MyExpenses.Portable.Interfaces;
 using MyExpenses.Portable.Models;
 using Newtonsoft.Json;
+using SQLite.Net;
 
 namespace MyExpenses.Portable.Services
 {
@@ -48,7 +48,7 @@ namespace MyExpenses.Portable.Services
        return Task.Factory.StartNew(() =>
        {
          var id = db.SaveItem<Expense>(item);
-         item.ID = id;
+         item.Id = id;
          return item;
        });
     }

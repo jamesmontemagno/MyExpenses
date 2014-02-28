@@ -38,11 +38,10 @@ namespace MyExpenses.Android.Views
       SetContentView(Resource.Layout.view_expense);
 
       var id = Intent.GetIntExtra("ID", -1);
-      if (id != -1)
-        this.ActionBar.Title = "Edit Expense";
-
       viewModel = ServiceContainer.Resolve<ExpenseViewModel>();
       await viewModel.Init(id);
+
+      this.ActionBar.Title = viewModel.Title;
       viewModel.IsBusyChanged = (busy) =>
       {
         if (busy)

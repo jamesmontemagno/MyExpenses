@@ -34,6 +34,7 @@ namespace MyExpenses.Portable.ViewModels
     public ExpenseViewModel(IExpenseService expenseService)
     {
       this.expenseService = expenseService;
+      Title = "New Expense";
     }
 
     private Expense currentExpense;
@@ -71,6 +72,14 @@ namespace MyExpenses.Portable.ViewModels
       Billable = currentExpense.Billable;
       Total = currentExpense.Total;
       Category = currentExpense.Category;
+      Title = "Edit Expense";
+    }
+
+    private string title = string.Empty;
+    public string Title
+    {
+      get { return title; }
+      set { title = value; OnPropertyChanged("Title"); }
     }
 
     private string name = string.Empty;
