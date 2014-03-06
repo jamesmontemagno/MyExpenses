@@ -61,7 +61,7 @@
     <MtouchDebug>True</MtouchDebug>
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchSdkVersion>7.0</MtouchSdkVersion>
-    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchLink>Full</MtouchLink>
     <MtouchProfiling>False</MtouchProfiling>
     <MtouchExtraArgs />
     <MtouchFastDev>False</MtouchFastDev>
@@ -107,6 +107,7 @@
       <Link>Helpers\ServiceRegistrar.cs</Link>
     </Compile>
     <Compile Include="Helpers\UIHelpers.cs" />
+    <Compile Include="PlatformSpecific\HttpClientHelper.cs" />
     <Compile Include="PlatformSpecific\MessageDialog.cs" />
     <Compile Include="Views\ExpensesViewController.cs" />
     <Compile Include="Main.cs" />
@@ -131,10 +132,20 @@
       <Visible>False</Visible>
       <Version>4.5.11</Version>
     </XamarinComponentReference>
+    <XamarinComponentReference Include="modernhttpclient">
+      <Visible>False</Visible>
+      <Version>1.1.0</Version>
+    </XamarinComponentReference>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="AFNetworking">
+      <HintPath>..\Components\modernhttpclient-1.1.0\lib\ios\AFNetworking.dll</HintPath>
+    </Reference>
     <Reference Include="BTProgressHUD">
       <HintPath>..\Components\btprogresshud-1.9\lib\ios\BTProgressHUD.dll</HintPath>
+    </Reference>
+    <Reference Include="ModernHttpClient.iOS">
+      <HintPath>..\Components\modernhttpclient-1.1.0\lib\ios\ModernHttpClient.iOS.dll</HintPath>
     </Reference>
     <Reference Include="MonoTouch.Dialog-1" />
     <Reference Include="Newtonsoft.Json">

@@ -96,6 +96,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\MyExpenses.Android\PlatformSpecific\HttpClientHelper.cs">
+      <Link>PlatformSpecific\HttpClientHelper.cs</Link>
+    </Compile>
     <Compile Include="..\Shared\ServiceRegistrar.cs">
       <Link>Helpers\ServiceRegistrar.cs</Link>
     </Compile>

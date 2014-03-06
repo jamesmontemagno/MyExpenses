@@ -66,6 +66,7 @@ namespace MyExpenses.Helpers
       ServiceContainer.Register<IMessageDialog>(()=>new MessageDialog());
       ServiceContainer.Register<ExpensesViewModel>();
       ServiceContainer.Register<ExpenseViewModel>();
+      ServiceContainer.Register<IHttpClientHelper>(new HttpClientHelper());
     }
   }
 }
