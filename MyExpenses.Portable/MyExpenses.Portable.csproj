@@ -41,7 +41,6 @@
     <Compile Include="BusinessLayer\Contracts\IBusinessEntity.cs" />
     <Compile Include="DataLayer\ExpenseDatabase.cs" />
     <Compile Include="Helpers\RelayCommand.cs" />
-    <Compile Include="Interfaces\IHttpClientHelper.cs" />
     <Compile Include="Services\ExpenseService.cs" />
     <Compile Include="Interfaces\IBusinessEntity.cs" />
     <Compile Include="Interfaces\IExpenseService.cs" />

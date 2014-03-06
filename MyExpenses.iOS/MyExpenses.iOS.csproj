@@ -107,12 +107,12 @@
       <Link>Helpers\ServiceRegistrar.cs</Link>
     </Compile>
     <Compile Include="Helpers\UIHelpers.cs" />
-    <Compile Include="PlatformSpecific\HttpClientHelper.cs" />
     <Compile Include="PlatformSpecific\MessageDialog.cs" />
     <Compile Include="Views\ExpensesViewController.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Views\ExpenseViewController.cs" />
+    <None Include="app.config" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="packages.config" />
@@ -132,20 +132,10 @@
       <Visible>False</Visible>
       <Version>4.5.11</Version>
     </XamarinComponentReference>
-    <XamarinComponentReference Include="modernhttpclient">
-      <Visible>False</Visible>
-      <Version>1.1.0</Version>
-    </XamarinComponentReference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="AFNetworking">
-      <HintPath>..\Components\modernhttpclient-1.1.0\lib\ios\AFNetworking.dll</HintPath>
-    </Reference>
     <Reference Include="BTProgressHUD">
       <HintPath>..\Components\btprogresshud-1.9\lib\ios\BTProgressHUD.dll</HintPath>
-    </Reference>
-    <Reference Include="ModernHttpClient.iOS">
-      <HintPath>..\Components\modernhttpclient-1.1.0\lib\ios\ModernHttpClient.iOS.dll</HintPath>
     </Reference>
     <Reference Include="MonoTouch.Dialog-1" />
     <Reference Include="Newtonsoft.Json">

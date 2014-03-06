@@ -139,9 +139,7 @@ namespace MyExpenses.Portable.ViewModels
       LoadedAlert = true;
       try
       {
-        //This is required for WP (Profile 78) to ensure iOS Compat
-        var handler = ServiceContainer.Resolve<IHttpClientHelper>().HttpHandler;
-        var client = handler == null ? new HttpClient() : new HttpClient(handler);
+        var client = new HttpClient();
         client.Timeout = new TimeSpan(0,0,0,5);
 
         var response = await client.GetStringAsync("https://gist.github.com/jamesmontemagno/a54af53e027308362415/raw/a828b194254b241281aad79cd362c33295fdb183/gistfile1.txt");

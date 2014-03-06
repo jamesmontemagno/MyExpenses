@@ -78,7 +78,6 @@
     </Compile>
     <Compile Include="Adapters\ExpenseAdapter.cs" />
     <Compile Include="MyExpensesApplication.cs" />
-    <Compile Include="PlatformSpecific\HttpClientHelper.cs" />
     <Compile Include="PlatformSpecific\MessageDialog.cs" />
     <Compile Include="Views\ExpenseActivity.cs" />
     <Compile Include="Views\ExpensesActivity.cs" />
@@ -86,6 +85,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
