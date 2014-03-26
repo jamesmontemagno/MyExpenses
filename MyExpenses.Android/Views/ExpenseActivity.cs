@@ -12,13 +12,19 @@
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //    See the License for the specific language governing permissions and
 //    limitations under the License.using System;
+
+using System;
+using System.Net;
+using System.Runtime.Remoting.Messaging;
 using System.Threading.Tasks;
 using Android.App;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
 using AndroidHUD;
+using Microsoft.WindowsAzure.MobileServices;
 using MyExpenses.Portable.Helpers;
+using MyExpenses.Portable.Interfaces;
 using MyExpenses.Portable.ViewModels;
 
 namespace MyExpenses.Android.Views
@@ -31,11 +37,14 @@ namespace MyExpenses.Android.Views
     private DatePicker date;
     private CheckBox billable;
     private Spinner category;
+    private IMessageDialog dialog;
     protected async override void OnCreate(Bundle bundle)
     {
       base.OnCreate(bundle);
 
       SetContentView(Resource.Layout.view_expense);
+
+      dialog = ServiceContainer.Resolve<IMessageDialog>();
 
       var id = Intent.GetIntExtra("ID", -1);
       viewModel = ServiceContainer.Resolve<ExpenseViewModel>();
@@ -90,8 +99,12 @@ namespace MyExpenses.Android.Views
           viewModel.Category = viewModel.Categories[category.SelectedItemPosition];
           Task.Run(async () =>
           {
-            await viewModel.ExecuteSaveExpenseCommand();
-            Finish();
+              await viewModel.ExecuteSaveExpenseCommand();
+
+              if (!viewModel.CanNavigate)
+                return;
+
+              Finish();
           });
           return true;
       }

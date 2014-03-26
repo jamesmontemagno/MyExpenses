@@ -30,7 +30,11 @@ namespace MyExpenses.Portable.ViewModels
       expenseService = ServiceContainer.Resolve<IExpenseService>();
     }
 
+    public bool CanNavigate { get; set; }
+
     private IExpenseService expenseService;
+    private IMessageDialog dialog;
+
     public ExpenseViewModel(IExpenseService expenseService)
     {
       this.expenseService = expenseService;
@@ -55,6 +59,8 @@ namespace MyExpenses.Portable.ViewModels
 
     private void Init()
     {
+      dialog = ServiceContainer.Resolve<IMessageDialog>();
+      CanNavigate = true;
       if (currentExpense == null)
       {
         Name = string.Empty;
@@ -63,6 +69,7 @@ namespace MyExpenses.Portable.ViewModels
         Notes = string.Empty;
         Total = string.Empty;
         Category = Categories[0];
+        Title = "New Expense";
         return;
       }
 
@@ -153,6 +160,8 @@ namespace MyExpenses.Portable.ViewModels
     {
       if (IsBusy)
         return;
+
+      CanNavigate = false;
       if (currentExpense == null)
         currentExpense = new Expense();
 
@@ -164,12 +173,15 @@ namespace MyExpenses.Portable.ViewModels
       currentExpense.Total = Total;
       try
       {
+        IsBusy = true;
         await expenseService.SaveExpense(currentExpense);
         ServiceContainer.Resolve<ExpensesViewModel>().NeedsUpdate = true;
+        CanNavigate = true;
       }
-      catch (Exception)
+      catch (Exception ex)
       {
-        Debug.WriteLine("Unable to save expense.");
+        
+        
       }
       finally
       {

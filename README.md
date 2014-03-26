@@ -17,6 +17,7 @@ Open Source Project by ([@JamesMontemagno](http://www.twitter.com/jamesmontemagn
 
 For Windows Phone you must install SQLite for Windows Phone Extension: http://visualstudiogallery.msdn.microsoft.com/cd120b42-30f4-446e-8287-45387a4f40b7
 
+** For Azure Mobile Services Integration please read the setup at the bottom of this page! **
 
 ## How much code is shared?
 I have included an "Analysis Project", which will count the shared lines of code. Up to 80% of code is shared across platforms. All of the Models, Services, View Models, and tons of helper classes are all found in one single PCL library. 
@@ -46,6 +47,26 @@ http://docs.xamarin.com/guides/ios/user_interface/monotouch.dialog/ - A wonderfu
 https://github.com/praeclarum/sqlite-net - A wonderful library for cross platform sqlite databases.
 Now in PCL form with: https://github.com/oysteinkrog/Sqlite.net-pcl
 
+### Azure Mobile Services Integration
+
+* Create a new Azure Mobile Services Table Called "Expense"
+* Follow this guide to setup the Table for Authentication: http://www.windowsazure.com/en-us/develop/mobile/tutorials/get-started-with-users-dotnet/
+
+* Setup Azure Scripts for Insert, Read, Update: http://www.windowsazure.com/en-us/develop/mobile/tutorials/authorize-users-in-scripts-dotnet/
+
+* Setup Twitter App for Authentication: http://www.dotnetcurry.com/ShowArticle.aspx?ID=860
+
+* Optionally you can setup Facebook, Microsoft, or Google, however the sample is setup for Twitter
+
+* Open "AzureService.cs" a shared file in MyEpenses.Android (or iOS or WindowsPhone) and 
+* Comment Back In & Edit: MobileClient = new MobileServiceClient(
+        
+"https://"+"PUT-SITE-HERE" +".azure-mobile.net/",
+        
+"PUT-YOUR-API-KEY-HERE");
+
+* This information can be found on Azure
+        
 
 ## License
 

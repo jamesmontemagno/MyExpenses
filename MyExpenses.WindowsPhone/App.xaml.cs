@@ -20,6 +20,7 @@ using System.Windows.Markup;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using Microsoft.WindowsAzure.MobileServices;
 using MyExpenses.Helpers;
 using MyExpenses.WindowsPhone.Resources;
 
@@ -27,6 +28,7 @@ namespace MyExpenses.WindowsPhone
 {
   public partial class App : Application
   {
+
     /// <summary>
     /// Provides easy access to the root frame of the Phone Application.
     /// </summary>

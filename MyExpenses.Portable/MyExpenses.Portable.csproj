@@ -24,7 +24,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -38,9 +38,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="BusinessLayer\Contracts\BusinessEntityBase.cs" />
-    <Compile Include="BusinessLayer\Contracts\IBusinessEntity.cs" />
     <Compile Include="DataLayer\ExpenseDatabase.cs" />
     <Compile Include="Helpers\RelayCommand.cs" />
+    <Compile Include="Interfaces\ICloudService.cs" />
     <Compile Include="Services\ExpenseService.cs" />
     <Compile Include="Interfaces\IBusinessEntity.cs" />
     <Compile Include="Interfaces\IExpenseService.cs" />
@@ -55,7 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\Shared\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\Components\azure-mobile-services-1.1.0\lib\ios\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="SQLite.Net">
       <HintPath>..\packages\SQLite.Net-PCL.2.1.0\lib\portable-net4+sl4+wp7+win8+monotouch+MonoAndroid\SQLite.Net.dll</HintPath>

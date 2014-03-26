@@ -30,6 +30,9 @@ namespace MyExpenses.Portable.BusinessLayer.Contracts {
 		/// </summary>
 		[PrimaryKey, AutoIncrement]
     public int Id { get; set; }
-	}
+
+    
+
+  }
 }
 
