@@ -30,6 +30,7 @@ namespace MyExpenses.Tests
     [TestInitialize]
     public void Init()
     {
+      ServiceContainer.Register<ICloudService>(()=>new CloudServiceMock());
       ServiceContainer.Register<IExpenseService>(()=>new ExpenseServiceMock());  
       ServiceContainer.Register<IMessageDialog>(()=>new MessageDialogMock());
       ServiceContainer.Register<ExpenseViewModel>();

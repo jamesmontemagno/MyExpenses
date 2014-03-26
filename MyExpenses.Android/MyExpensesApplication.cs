@@ -15,6 +15,7 @@
 using System;
 using Android.App;
 using MyExpenses.Helpers;
+using Microsoft.WindowsAzure.MobileServices;
 
 namespace MyExpenses.Android
 {
@@ -31,7 +32,9 @@ namespace MyExpenses.Android
     public override void OnCreate()
     {
       base.OnCreate();
+      CurrentPlatform.Init();
       ServiceRegistrar.Startup();
+      
     }
   }
 }

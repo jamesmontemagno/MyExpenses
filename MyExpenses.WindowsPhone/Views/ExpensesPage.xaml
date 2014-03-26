@@ -18,8 +18,9 @@
     </phone:PhoneApplicationPage.Resources>
 	<phone:PhoneApplicationPage.ApplicationBar>
 		<shell:ApplicationBar>
-			<shell:ApplicationBarIconButton IconUri="/Assets/AppBar/add.png" IsEnabled="True" Text="new" x:Name="NewExpenseAppButton" Click="NewExpenseAppButton_OnClick"/>
-		</shell:ApplicationBar>
+            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/add.png" IsEnabled="True" Text="new" x:Name="NewExpenseAppButton" Click="NewExpenseAppButton_OnClick"/>
+            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/refresh.png" IsEnabled="True" Text="refresh" x:Name="RefreshButton" Click="RefreshButton_OnClick"/>
+        </shell:ApplicationBar>
 	</phone:PhoneApplicationPage.ApplicationBar>
 
 	<phone:PhoneApplicationPage.FontFamily>

@@ -16,6 +16,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using MyExpenses.Portable.Helpers;
 using MyExpenses.Portable.Interfaces;
 using MyExpenses.Portable.Models;
 using SQLite.Net;
@@ -33,9 +34,10 @@ namespace MyExpenses.Portable.DataLayer
     static object locker = new object();
     
     SQLiteConnection database;
+    private ICloudService cloudService;
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="TaskDatabase"/> TaskDatabase. 
+    /// Initializes a new instance of the <see cref="ExpenseDatabase"/> ExpenseDatabase. 
     /// if the database doesn't exist, it will create the database and all the tables.
     /// </summary>
     /// <param name='path'>
@@ -46,64 +48,36 @@ namespace MyExpenses.Portable.DataLayer
       database = conn;
       // create the tables
       database.CreateTable<Expense>();
-      
-#if PRELOAD
-      if (!GetItems<Expense>().Any())
-      {
-        for (int i = 0; i < 500; i++)
-        {
-          var expense = new Expense()
-          {
-            Category = "Uncategorized",
-            Billable = true,
-            Due = DateTime.Now.AddDays(i),
-            Name = "Expense " + i,
-            Total = (100 + i).ToString()
-          };
-          SaveItem(expense);
-        }
-      }
-#else
-      if (!GetItems<Expense>().Any())
-      {
-
-        var expense = new Expense()
-        {
-          Category = "Phone",
-          Billable = true,
-          Due = DateTime.Now.AddDays(2),
-          Name = "Phone Bill",
-          Total = "65.05"
-        };
-        SaveItem(expense);
-        expense = new Expense()
-        {
-          Category = "Meals",
-          Billable = true,
-          Due = DateTime.Now.AddDays(-2),
-          Name = "Business Dinner",
-          Total = "55.00"
-        };
-        SaveItem(expense);
-        expense = new Expense()
-        {
-          Category = "Transportation",
-          Billable = true,
-          Due = DateTime.Now.AddDays(5),
-          Name = "Rental Car",
-          Total = "75.05"
-        };
-        SaveItem(expense);
-      }
-#endif
-
+      cloudService = ServiceContainer.Resolve<ICloudService>();
     }
 
     public IEnumerable<T> GetItems<T>() where T : IBusinessEntity, new()
     {
       lock (locker)
       {
-        return (from i in database.Table<T>() select i).ToList();
+        var items = (from i in database.Table<T>() select i).ToList();
+        return items;
+      }
+    }
+
+    /// <summary>
+    /// Only grab items that are visible and for this specific user!
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerable<Expense> GetVisibleItems()
+    {
+      lock (locker)
+      {
+        var items = database.Table<Expense>().ToList().Where(x => x.IsVisible && x.UserId == cloudService.UserId).OrderBy(x => x.Due);
+        return items;
+      }
+    }
+
+    public Expense GetItem(string id)
+    {
+      lock (locker)
+      {
+        return database.Table<Expense>().FirstOrDefault(x => x.AzureId == id);
       }
     }
 

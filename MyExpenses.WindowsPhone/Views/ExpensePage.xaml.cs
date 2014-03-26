@@ -21,7 +21,9 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using Microsoft.WindowsAzure.MobileServices;
 using MyExpenses.Portable.Helpers;
+using MyExpenses.Portable.Interfaces;
 using MyExpenses.Portable.Services;
 using MyExpenses.Portable.ViewModels;
 using MyExpenses.WindowsPhone.Resources;
@@ -31,10 +33,12 @@ namespace MyExpenses.WindowsPhone
   public partial class ExpensePage : PhoneApplicationPage
   {
     private ExpenseViewModel viewModel;
+    private IMessageDialog dialog;
     // Constructor
     public ExpensePage()
     {
       InitializeComponent();
+      dialog = ServiceContainer.Resolve<IMessageDialog>();
     }
 
     // When page is navigated to set data context to selected item in list
@@ -63,6 +67,9 @@ namespace MyExpenses.WindowsPhone
     private async void SaveAppButton_OnClick(object sender, EventArgs e)
     {
       await viewModel.ExecuteSaveExpenseCommand();
+
+      if (!viewModel.CanNavigate)
+        return;
       NavigationService.GoBack();
     }
   }

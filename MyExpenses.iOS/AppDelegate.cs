@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using Microsoft.WindowsAzure.MobileServices;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using MyExpenses.Helpers;
@@ -15,6 +15,7 @@ namespace MyExpenses.iOS
   [Register("AppDelegate")]
   public partial class AppDelegate : UIApplicationDelegate
   {
+
     // class-level declarations
     UIWindow window;
     private UINavigationController navigationController;

@@ -3,11 +3,22 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:indeterminateOnly="true"
+        android:id="@+id/progressBar"
+        android:layout_marginBottom="-8dp"
+        android:layout_marginTop="-4dp"
+        android:visibility="gone" />
     <ListView
         android:id="@android:id/list"
         android:padding="@dimen/standard_padding"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:drawSelectorOnTop="true"
         android:gravity="center"
         android:fastScrollEnabled="true"

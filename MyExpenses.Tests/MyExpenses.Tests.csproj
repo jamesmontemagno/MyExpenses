@@ -55,6 +55,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="ExpensesViewModelTests.cs" />
+    <Compile Include="Helpers\CloudServiceMock.cs" />
     <Compile Include="Helpers\ExpenseServiceMock.cs" />
     <Compile Include="Helpers\MessageDialogMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

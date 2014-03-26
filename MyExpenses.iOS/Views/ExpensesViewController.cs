@@ -12,10 +12,15 @@
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //    See the License for the specific language governing permissions and
 //    limitations under the License.using System;
-using BigTed;
+
+using System;
+using System.Threading.Tasks;
+using Microsoft.WindowsAzure.MobileServices;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+using MyExpenses.PlatformSpecific;
 using MyExpenses.Portable.Helpers;
+using MyExpenses.Portable.Services;
 using MyExpenses.Portable.ViewModels;
 
 namespace MyExpenses.iOS.Views
@@ -29,17 +34,31 @@ namespace MyExpenses.iOS.Views
       Title = "My Expenses";
     }
 
-    public override void ViewDidLoad()
+    public async override void ViewDidLoad()
     {
       base.ViewDidLoad();
+      
+
       viewModel = ServiceContainer.Resolve<ExpensesViewModel>();
 
       viewModel.IsBusyChanged = (busy) =>
       {
-        if(busy)
-          BTProgressHUD.Show("Loading...");
+        if (busy)
+          RefreshControl.BeginRefreshing();
         else
-          BTProgressHUD.Dismiss();
+          RefreshControl.EndRefreshing();
+      };
+
+
+      this.RefreshControl = new UIRefreshControl();
+
+      RefreshControl.ValueChanged += async (sender, args) =>
+      {
+        if (viewModel.IsBusy)
+          return;
+
+        await viewModel.ExecuteSyncExpensesCommand();
+        TableView.ReloadData();
       };
 
       TableView.Source = new ExpensesSource(viewModel, this);
@@ -47,16 +66,48 @@ namespace MyExpenses.iOS.Views
       {
         NavigationController.PushViewController(new ExpenseViewController(null), true);
       });
+
+      await Authenticate();
+      await viewModel.ExecuteSyncExpensesCommand();
+      TableView.ReloadData();
     }
+
+    
 
     public async override void ViewDidAppear(bool animated)
     {
       base.ViewDidAppear(animated);
 
-      if (viewModel.NeedsUpdate)
+      if (viewModel.NeedsUpdate && viewModel.IsSynced)
       {
         await viewModel.ExecuteLoadExpensesCommand();
         TableView.ReloadData();
+      }
+    }
+
+    /// <summary>
+    /// Authenticate the azure client with twitter authentication.
+    /// </summary>
+    /// <returns></returns>
+    private async Task Authenticate()
+    {
+      var client = AzureService.Instance.MobileService;
+      if (client == null)
+        return;
+
+      while (client.CurrentUser == null)
+      {
+        try
+        {
+          client.CurrentUser = await client
+            .LoginAsync(this, MobileServiceAuthenticationProvider.Twitter);
+        }
+        catch (InvalidOperationException ex)
+        {
+          var message = "You must log in. Login Required";
+          var alert = new UIAlertView("Login", message, null, "OK", null);
+          alert.Show();
+        }
       }
     }
 
@@ -113,5 +164,7 @@ namespace MyExpenses.iOS.Views
         controller.NavigationController.PushViewController(new ExpenseViewController(expense), true);
       }
     }
+
+    
   }
 }

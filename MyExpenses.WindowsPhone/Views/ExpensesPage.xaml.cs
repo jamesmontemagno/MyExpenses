@@ -13,21 +13,24 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.using System;
 using System;
-using System.ServiceModel.Channels;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
+using Microsoft.WindowsAzure.MobileServices;
+using MyExpenses.PlatformSpecific;
 using MyExpenses.Portable.Helpers;
 using MyExpenses.Portable.Models;
 using MyExpenses.Portable.Services;
 using MyExpenses.Portable.ViewModels;
+using Newtonsoft.Json.Linq;
 
 namespace MyExpenses.WindowsPhone.Views
 {
   public partial class ExpensesPage : PhoneApplicationPage
   {
     private ExpensesViewModel viewModel;
+    private bool loaded;
     // Constructor
     public ExpensesPage()
     {
@@ -36,12 +39,24 @@ namespace MyExpenses.WindowsPhone.Views
       // Set the data context of the LongListSelector control to the sample data
       viewModel = ServiceContainer.Resolve<ExpensesViewModel>();
       DataContext = viewModel;
+      this.Loaded += OnLoaded;
+    }
+
+    private async void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
+    {
+      if (loaded)
+        return;
+      loaded = true;
+
+      await Authenticate();
+      if (!viewModel.IsSynced)
+        await viewModel.ExecuteSyncExpensesCommand();
     }
 
     // Load data for the ViewModel Items
     protected async override void OnNavigatedTo(NavigationEventArgs e)
     {
-      if(viewModel.NeedsUpdate)
+      if(viewModel.NeedsUpdate && viewModel.IsSynced)
         viewModel.LoadExpensesCommand.Execute(null);
     }
 
@@ -50,6 +65,9 @@ namespace MyExpenses.WindowsPhone.Views
     {
       // If selected item is null (no selection) do nothing
       if (MainLongListSelector.SelectedItem == null)
+        return;
+
+      if (viewModel.IsBusy)
         return;
 
       // Navigate to the new page
@@ -62,6 +80,9 @@ namespace MyExpenses.WindowsPhone.Views
 
     private void Delete_OnClick(object sender, RoutedEventArgs e)
     {
+      if (viewModel.IsBusy)
+        return;
+
       var menuItem = sender as MenuItem;
 
       if (menuItem != null)
@@ -76,9 +97,43 @@ namespace MyExpenses.WindowsPhone.Views
 
     private void NewExpenseAppButton_OnClick(object sender, EventArgs e)
     {
+      if (viewModel.IsBusy)
+        return;
       // Navigate to the new page
       NavigationService.Navigate(new Uri("/Views/ExpensePage.xaml", UriKind.Relative));
 
+    }
+
+    private async void RefreshButton_OnClick(object sender, EventArgs e)
+    {
+      viewModel.SyncExpensesCommand.Execute(null);
+    }
+
+
+    private async System.Threading.Tasks.Task Authenticate()
+    {
+      var client = AzureService.Instance.MobileService;
+      if (client == null)
+        return;
+
+      while (client.CurrentUser == null)
+      {
+        
+        try
+        {
+
+          client.CurrentUser = await client
+            .LoginAsync(MobileServiceAuthenticationProvider.Twitter);
+     
+        }
+        catch (InvalidOperationException ex)
+        {
+          var message = "You must log in. Login Required";
+          MessageBox.Show(message, "Login", MessageBoxButton.OK);
+     
+        }
+
+      }
     }
   }
 }

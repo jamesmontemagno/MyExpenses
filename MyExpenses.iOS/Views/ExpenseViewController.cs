@@ -14,10 +14,14 @@
 //    limitations under the License.using System;
 using System;
 using System.Linq;
+using System.Net;
+using System.Runtime.Remoting.Messaging;
 using BigTed;
+using Microsoft.WindowsAzure.MobileServices;
 using MonoTouch.Dialog;
 using MonoTouch.UIKit;
 using MyExpenses.Portable.Helpers;
+using MyExpenses.Portable.Interfaces;
 using MyExpenses.Portable.Models;
 using MyExpenses.Portable.ViewModels;
 
@@ -31,10 +35,12 @@ namespace MyExpenses.iOS.Views
     private RadioGroup categories;
     private ExpenseViewModel viewModel;
     private Expense expense;
+    private IMessageDialog dialog;
 
     public ExpenseViewController(Expense expense) : base(UITableViewStyle.Plain, null, true)
     {
       this.expense = expense;
+      dialog = ServiceContainer.Resolve<IMessageDialog>();
       viewModel = ServiceContainer.Resolve<ExpenseViewModel>();
       viewModel.Init(this.expense);
 
@@ -90,8 +96,12 @@ namespace MyExpenses.iOS.Views
         viewModel.Due = due.DateValue;
         viewModel.Notes = notes.Caption;
         viewModel.Total = total.Value;
+
         await viewModel.ExecuteSaveExpenseCommand();
+        if (!viewModel.CanNavigate)
+          return;
         NavigationController.PopToRootViewController(true);
+        
       });
     }
   }
