@@ -56,16 +56,19 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Components\AndHUD-1.3.1\lib\android\AndHUD.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.WindowsAzure.Mobile">
-      <HintPath>..\Components\azure-mobile-services-1.1.0\lib\android\Microsoft.WindowsAzure.Mobile.dll</HintPath>
+    <Reference Include="Microsoft.WindowsAzure.Mobile, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Components\azure-mobile-services-1.1.5\lib\android\Microsoft.WindowsAzure.Mobile.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.WindowsAzure.Mobile.Ext">
-      <HintPath>..\Components\azure-mobile-services-1.1.0\lib\android\Microsoft.WindowsAzure.Mobile.Ext.dll</HintPath>
+    <Reference Include="Microsoft.WindowsAzure.Mobile.Ext, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Components\azure-mobile-services-1.1.5\lib\android\Microsoft.WindowsAzure.Mobile.Ext.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Android" />
     <Reference Include="mscorlib" />
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\Components\azure-mobile-services-1.1.0\lib\android\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Components\azure-mobile-services-1.1.5\lib\android\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="SQLite.Net">
       <HintPath>..\packages\SQLite.Net-PCL.2.1.0\lib\portable-net4+sl4+wp7+win8+monotouch+MonoAndroid\SQLite.Net.dll</HintPath>
@@ -76,16 +79,16 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Extensions">
+      <HintPath>..\Components\azure-mobile-services-1.1.5\lib\android\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives">
+      <HintPath>..\Components\azure-mobile-services-1.1.5\lib\android\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
-    <Reference Include="Xamarin.Auth.Android">
-      <HintPath>..\Components\azure-mobile-services-1.1.0\lib\android\Xamarin.Auth.Android.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Shared\AzureService.cs">
-      <Link>Helpers\AzureService.cs</Link>
-    </Compile>
     <Compile Include="..\Shared\ServiceRegistrar.cs">
       <Link>Helpers\ServiceRegistrar.cs</Link>
     </Compile>
@@ -150,7 +153,7 @@
     </XamarinComponentReference>
     <XamarinComponentReference Include="azure-mobile-services">
       <Visible>False</Visible>
-      <Version>1.1.0</Version>
+      <Version>1.1.5</Version>
     </XamarinComponentReference>
   </ItemGroup>
   <ItemGroup>
