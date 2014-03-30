@@ -28,7 +28,10 @@ I have included an "Analysis Project", which will count the shared lines of code
 Everything is written in C# with Xamarin with a base PCL library. This project couldn't have been done without the following:
 
 ### Json.NET
-https://components.xamarin.com/view/json.net - I use both the NuGet in the PCL and component for iOS for facade linking. One of the most wonderful Json libraries that I simply love. It is used to deserialize all information coming from the meetup.com APIs.
+https://components.xamarin.com/view/json.net - I use both the NuGet in the PCL and component for iOS for facade linking. One of the most wonderful Json libraries that I simply love. It is used to deserialize all information coming from the meetup.com APIs. PCL is also used for this and I reference the portable-net40 folder to ensure iOS works correctly.
+
+### Azure Mobile Services
+https://www.nuget.org/packages/WindowsAzure.MobileServices/ and https://components.xamarin.com/view/azure-mobile-services Used optionally to store data up into Azure and sync between devices! I use the NuGet in Windows Phone and PCL and then the components for each iOS and Android. See below for more information.
 
 ### HTTP Client Libraries
 https://www.nuget.org/packages/Microsoft.Net.Http - Brings HTTP Client functionality to Windows Phone in PCL.
