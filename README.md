@@ -9,6 +9,8 @@ Videos are available on Channel 9:
 
 [Part 2: Using Portable Class Libraries with Xamarin](http://channel9.msdn.com/Shows/Visual-Studio-Toolbox/Using-Portable-Class-Libraries-with-Xamarin)
 
+[Part 3: Cross Platform Mobile Apps with Xamarin and Azure Mobile Services](http://channel9.msdn.com/Shows/Visual-Studio-Toolbox/Cross-Platform-Mobile-Apps-with-Xamarin-and-Azure-Mobile-Services)
+
 Expense taking cross platform application for Windows Phone, Android, and iOS built with Xamarin inside of Visual Studio 2013. Expenses are stored locally in a Sqlite-net database. You can add new expenses and edit or delete existing. All business logic is shared in one portable class library.
 
 Written in C# with ([Xamarin](http://www.xamarin.com))  **Created in Visual Studio 2013**
