@@ -1,4 +1,3 @@
-
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.WindowsAzure.MobileServices;
@@ -16,7 +15,7 @@ namespace MyExpenses.PlatformSpecific
     public AzureService()
     {
       //comment back in to enable Azure Mobile Services.
-      /*MobileClient = new MobileServiceClient(
+      /*MobileService = new MobileServiceClient(
                     "https://" + "PUT-SITE-HERE" + ".azure-mobile.net/",
                     "PUT-YOUR-API-KEY-HERE");
 
