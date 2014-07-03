@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyExpenses.Portable", "MyExpenses.Portable\MyExpenses.Portable.csproj", "{DC013CAB-92B7-473C-B06D-C1459651640B}"
 EndProject
@@ -16,6 +16,13 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyExpenses.Android", "MyExpenses.Android\MyExpenses.Android.csproj", "{F5C0623B-7B4F-4442-862A-0D79B9362E1F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyExpenses.iOS", "MyExpenses.iOS\MyExpenses.iOS.csproj", "{E32AAED8-DB96-4653-84CF-EBFA2E551EFB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{CB4C6054-0539-45FB-B5C2-911B607B8C68}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -148,9 +155,9 @@ Global
 		{E58F83EB-8F07-401C-9FA3-24971BA2070C}.Debug|ARM.Deploy.0 = Debug|ARM
 		{E58F83EB-8F07-401C-9FA3-24971BA2070C}.Debug|iPhone.ActiveCfg = Debug|Any CPU
 		{E58F83EB-8F07-401C-9FA3-24971BA2070C}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{E58F83EB-8F07-401C-9FA3-24971BA2070C}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{E58F83EB-8F07-401C-9FA3-24971BA2070C}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{E58F83EB-8F07-401C-9FA3-24971BA2070C}.Debug|Mixed Platforms.Deploy.0 = Debug|x86
+		{E58F83EB-8F07-401C-9FA3-24971BA2070C}.Debug|Mixed Platforms.ActiveCfg = Debug|ARM
+		{E58F83EB-8F07-401C-9FA3-24971BA2070C}.Debug|Mixed Platforms.Build.0 = Debug|ARM
+		{E58F83EB-8F07-401C-9FA3-24971BA2070C}.Debug|Mixed Platforms.Deploy.0 = Debug|ARM
 		{E58F83EB-8F07-401C-9FA3-24971BA2070C}.Debug|x86.ActiveCfg = Debug|x86
 		{E58F83EB-8F07-401C-9FA3-24971BA2070C}.Debug|x86.Build.0 = Debug|x86
 		{E58F83EB-8F07-401C-9FA3-24971BA2070C}.Debug|x86.Deploy.0 = Debug|x86
@@ -272,9 +279,9 @@ Global
 		{E32AAED8-DB96-4653-84CF-EBFA2E551EFB}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
 		{E32AAED8-DB96-4653-84CF-EBFA2E551EFB}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
 		{E32AAED8-DB96-4653-84CF-EBFA2E551EFB}.Debug|iPhoneSimulator.Deploy.0 = Debug|iPhoneSimulator
-		{E32AAED8-DB96-4653-84CF-EBFA2E551EFB}.Debug|Mixed Platforms.ActiveCfg = Debug|iPhone
-		{E32AAED8-DB96-4653-84CF-EBFA2E551EFB}.Debug|Mixed Platforms.Build.0 = Debug|iPhone
-		{E32AAED8-DB96-4653-84CF-EBFA2E551EFB}.Debug|Mixed Platforms.Deploy.0 = Debug|iPhone
+		{E32AAED8-DB96-4653-84CF-EBFA2E551EFB}.Debug|Mixed Platforms.ActiveCfg = Debug|iPhoneSimulator
+		{E32AAED8-DB96-4653-84CF-EBFA2E551EFB}.Debug|Mixed Platforms.Build.0 = Debug|iPhoneSimulator
+		{E32AAED8-DB96-4653-84CF-EBFA2E551EFB}.Debug|Mixed Platforms.Deploy.0 = Debug|iPhoneSimulator
 		{E32AAED8-DB96-4653-84CF-EBFA2E551EFB}.Debug|x86.ActiveCfg = Debug|iPhone
 		{E32AAED8-DB96-4653-84CF-EBFA2E551EFB}.Release|Any CPU.ActiveCfg = Release|iPhone
 		{E32AAED8-DB96-4653-84CF-EBFA2E551EFB}.Release|ARM.ActiveCfg = Release|iPhone
@@ -293,7 +300,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{5B8AE9C0-B53F-475C-82F9-A6851C484697} = {F0FEB5A4-427E-44CC-8E42-97E33A6C8F9A}
 		{DB47D56F-7BD3-431B-9E4D-B1613632546A} = {F0FEB5A4-427E-44CC-8E42-97E33A6C8F9A}
+		{5B8AE9C0-B53F-475C-82F9-A6851C484697} = {F0FEB5A4-427E-44CC-8E42-97E33A6C8F9A}
 	EndGlobalSection
 EndGlobal

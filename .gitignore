@@ -28,6 +28,10 @@ local.properties
 # PDT-specific
 .buildpath
 
+# Xamarin
+Components/
+[Pp]ackages/
+
 
 #################
 ## Visual Studio
