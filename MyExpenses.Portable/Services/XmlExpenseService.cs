@@ -20,6 +20,8 @@ using MyExpenses.Portable.Helpers;
 using MyExpenses.Portable.Interfaces;
 using MyExpenses.Portable.Models;
 using Newtonsoft.Json;
+using System.Linq;
+using PCLStorage;
 
 namespace MyExpenses.Portable.Services
 {
@@ -43,35 +45,73 @@ namespace MyExpenses.Portable.Services
       return JsonConvert.DeserializeObject<T>(value);
     }
 
+    List<Expense> Expenses = new List<Expense>();
 
     public Task<Expense> GetExpenseAsync(string id)
     {
-      throw new NotImplementedException();
+      return Task.Run(()=>Expenses.FirstOrDefault(s => s.Id == id));
     }
 
-    public Task<IEnumerable<Expense>> GetExpensesAsync()
+    public async Task<IEnumerable<Expense>> GetExpensesAsync()
     {
-      throw new NotImplementedException();
+      var rootFolder = FileSystem.Current.LocalStorage;
+      var folder = await rootFolder.CreateFolderAsync(Folder,
+          CreationCollisionOption.OpenIfExists);
+      var file = await folder.CreateFileAsync(File,
+          CreationCollisionOption.OpenIfExists);
+      var json = await file.ReadAllTextAsync();
+      if(!string.IsNullOrWhiteSpace(json))
+        Expenses = DeserializeObject<List<Expense>>(json);
+
+      return Expenses;
     }
 
     public Task SyncExpensesAsync()
     {
-      throw new NotImplementedException();
+      return Task.Run(() => { });
     }
 
-    public Task<Expense> SaveExpenseAsync(Expense expense)
+    public async Task<Expense> SaveExpenseAsync(Expense expense)
     {
-      throw new NotImplementedException();
+      if(string.IsNullOrWhiteSpace(expense.Id))
+      {
+        expense.Id = DateTime.Now.ToString();
+        Expenses.Add(expense);
+      }
+      else
+      {
+        var found = Expenses.FirstOrDefault(e => e.Id == expense.Id);
+        if(found != null)
+          found.SyncProperties(expense);
+      }
+      await Save();
+      return expense;
     }
 
-    public Task<string> DeleteExpenseAsync(Expense expense)
+    public async Task<string> DeleteExpenseAsync(Expense expense)
     {
-      throw new NotImplementedException();
+      var id = expense.Id;
+      Expenses.Remove(expense);
+      await Save();
+      return id;
+    }
+
+    private string Folder = "Expenses";
+    private string File = "expenses.json";
+
+    private async Task Save()
+    {
+      var rootFolder = FileSystem.Current.LocalStorage;
+      var folder = await rootFolder.CreateFolderAsync(Folder,
+          CreationCollisionOption.OpenIfExists);
+      var file = await folder.CreateFileAsync(File,
+          CreationCollisionOption.ReplaceExisting);
+      await file.WriteAllTextAsync(JsonConvert.SerializeObject(Expenses));
     }
 
     public string UserId
     {
-      get { throw new NotImplementedException(); }
+      get { return string.Empty; ; }
     }
 
     public Task Init()

@@ -63,6 +63,8 @@ namespace MyExpenses.Android
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahText = global::MyExpenses.Android.Resource.Styleable.ProgressWheel_ahText;
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextColor = global::MyExpenses.Android.Resource.Styleable.ProgressWheel_ahTextColor;
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextSize = global::MyExpenses.Android.Resource.Styleable.ProgressWheel_ahTextSize;
+			global::PCLStorage.Resource.String.ApplicationName = global::MyExpenses.Android.Resource.String.ApplicationName;
+			global::PCLStorage.Resource.String.Hello = global::MyExpenses.Android.Resource.String.Hello;
 		}
 		
 		public partial class Attribute
@@ -316,16 +318,19 @@ namespace MyExpenses.Android
 			public const int ApplicationName = 2130968577;
 			
 			// aapt resource value: 0x7f040000
-			public const int library_name = 2130968576;
+			public const int Hello = 2130968576;
 			
 			// aapt resource value: 0x7f040002
-			public const int menu_new_expense = 2130968578;
-			
-			// aapt resource value: 0x7f040004
-			public const int menu_refresh = 2130968580;
+			public const int library_name = 2130968578;
 			
 			// aapt resource value: 0x7f040003
-			public const int menu_save_expense = 2130968579;
+			public const int menu_new_expense = 2130968579;
+			
+			// aapt resource value: 0x7f040005
+			public const int menu_refresh = 2130968581;
+			
+			// aapt resource value: 0x7f040004
+			public const int menu_save_expense = 2130968580;
 			
 			static String()
 			{

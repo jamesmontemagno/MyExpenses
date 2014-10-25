@@ -48,8 +48,9 @@ namespace MyExpenses.Helpers
       SQLitePCL.CurrentPlatform.Init();
 #endif
 
-      var expenseService = new AzureExpenseService();
-      expenseService.Init().Wait();
+      var expenseService = new XmlExpenseService();
+      //var expenseService = new AzureExpenseService();
+      //expenseService.Init().Wait();
 
       ServiceContainer.Register<IMessageDialog>(() => new MessageDialog());
       ServiceContainer.Register<IExpenseService>(() => expenseService);
