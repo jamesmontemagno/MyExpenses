@@ -57,7 +57,7 @@ namespace MyExpenses.iOS.Views
         if (viewModel.IsBusy)
           return;
 
-        await viewModel.ExecuteSyncExpensesCommand();
+        await viewModel.ExecuteLoadExpensesCommand();
         TableView.ReloadData();
       };
 
@@ -68,7 +68,7 @@ namespace MyExpenses.iOS.Views
       });
 
       await Authenticate();
-      await viewModel.ExecuteSyncExpensesCommand();
+      await viewModel.ExecuteLoadExpensesCommand();
       TableView.ReloadData();
     }
 
@@ -78,7 +78,7 @@ namespace MyExpenses.iOS.Views
     {
       base.ViewDidAppear(animated);
 
-      if (viewModel.NeedsUpdate && viewModel.IsSynced)
+      if (viewModel.NeedsUpdate)
       {
         await viewModel.ExecuteLoadExpensesCommand();
         TableView.ReloadData();

@@ -42,9 +42,7 @@ namespace MyExpenses.Helpers
     public static void Startup()
     {
 #if __ANDROID__
-      
       CurrentPlatform.Init();
-      SQLitePCL.CurrentPlatform.Init();
 #elif __IOS__
       CurrentPlatform.Init();
       SQLitePCL.CurrentPlatform.Init();

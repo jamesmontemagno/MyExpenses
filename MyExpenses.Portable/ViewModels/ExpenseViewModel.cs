@@ -175,6 +175,7 @@ namespace MyExpenses.Portable.ViewModels
       {
         IsBusy = true;
         await expenseService.SaveExpenseAsync(currentExpense);
+        await expenseService.SyncExpensesAsync();
         ServiceContainer.Resolve<ExpensesViewModel>().NeedsUpdate = true;
         CanNavigate = true;
       }

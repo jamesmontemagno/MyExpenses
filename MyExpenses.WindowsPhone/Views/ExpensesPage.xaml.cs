@@ -49,14 +49,13 @@ namespace MyExpenses.WindowsPhone.Views
       loaded = true;
 
       await Authenticate();
-      if (!viewModel.IsSynced)
-        await viewModel.ExecuteSyncExpensesCommand();
+      await viewModel.ExecuteLoadExpensesCommand();
     }
 
     // Load data for the ViewModel Items
     protected async override void OnNavigatedTo(NavigationEventArgs e)
     {
-      if(viewModel.NeedsUpdate && viewModel.IsSynced)
+      if(viewModel.NeedsUpdate)
         viewModel.LoadExpensesCommand.Execute(null);
     }
 
@@ -106,7 +105,7 @@ namespace MyExpenses.WindowsPhone.Views
 
     private async void RefreshButton_OnClick(object sender, EventArgs e)
     {
-      viewModel.SyncExpensesCommand.Execute(null);
+      viewModel.LoadExpensesCommand.Execute(null); ;
     }
 
 

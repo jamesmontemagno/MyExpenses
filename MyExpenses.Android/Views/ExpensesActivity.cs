@@ -56,12 +56,10 @@ namespace MyExpenses.Android.Views
         RunOnUiThread(() => ((ExpenseAdapter)ListAdapter).NotifyDataSetChanged());
       };
 
-      if (!viewModel.IsSynced)
-      {
-        await Authenticate();
-        await viewModel.ExecuteSyncExpensesCommand();
-        RunOnUiThread(() => ((ExpenseAdapter)ListAdapter).NotifyDataSetChanged());
-      }
+      await Authenticate();
+      await viewModel.ExecuteLoadExpensesCommand();
+      RunOnUiThread(() => ((ExpenseAdapter)ListAdapter).NotifyDataSetChanged());
+      
       
     }
 
@@ -73,7 +71,7 @@ namespace MyExpenses.Android.Views
 
       
 
-      if (viewModel.NeedsUpdate && viewModel.IsSynced)
+      if (viewModel.NeedsUpdate)
       {
         await viewModel.ExecuteLoadExpensesCommand();
         RunOnUiThread(() => ((ExpenseAdapter) ListAdapter).NotifyDataSetChanged());
@@ -111,7 +109,7 @@ namespace MyExpenses.Android.Views
 
     private async Task Sync()
     {
-      await viewModel.ExecuteSyncExpensesCommand();
+      await viewModel.ExecuteLoadExpensesCommand();
       RunOnUiThread(() => ((ExpenseAdapter)ListAdapter).NotifyDataSetChanged());
     }
 

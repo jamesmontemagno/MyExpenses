@@ -43,10 +43,6 @@ namespace MyExpenses.Portable.ViewModels
     /// </summary>
     public bool NeedsUpdate { get; set; }
 
-    /// <summary>
-    /// Gets or sets if an update is needed
-    /// </summary>
-    public bool IsSynced { get; set; }
 
     /// <summary>
     /// Gets or sets if we have loaded alert
@@ -122,6 +118,7 @@ namespace MyExpenses.Portable.ViewModels
       {
 
         await expenseService.DeleteExpenseAsync(exp);
+        await expenseService.SyncExpensesAsync();
         Expenses.Remove(Expenses.FirstOrDefault(ex => ex.Id == exp.Id));
 
 
@@ -136,38 +133,5 @@ namespace MyExpenses.Portable.ViewModels
       }
     }
 
-    private RelayCommand syncExpensesCommand;
-
-    public ICommand SyncExpensesCommand
-    {
-      get { return syncExpensesCommand ?? (syncExpensesCommand = new RelayCommand(async () => await ExecuteSyncExpensesCommand())); }
-    }
-
-    public async Task ExecuteSyncExpensesCommand()
-    {
-      if (IsBusy)
-        return;
-
-      IsSynced = false;
-
-      IsBusy = true;
-
-      try
-      {
-        //If we want to test out an alert comment this back in
-        //if (!LoadedAlert)
-        //  await ExecuteLoadAlert();
-
-        await expenseService.SyncExpensesAsync();
-      }
-      catch (Exception ex)
-      {
-        //log exception
-      }
-      await UpdateExpenses();
-      IsBusy = false;
-      IsSynced = true;
-
-    }
   }
 }
