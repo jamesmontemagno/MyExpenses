@@ -70,7 +70,7 @@ namespace MyExpenses.Portable.ViewModels
       NeedsUpdate = false;
       try
       {
-        var exps = await expenseService.GetExpenses();
+        var exps = await expenseService.GetExpensesAsync();
 
         foreach (var expense in exps)
         {
@@ -121,7 +121,7 @@ namespace MyExpenses.Portable.ViewModels
       try
       {
 
-        await expenseService.DeleteExpense(exp.Id);
+        await expenseService.DeleteExpenseAsync(exp);
         Expenses.Remove(Expenses.FirstOrDefault(ex => ex.Id == exp.Id));
 
 
@@ -158,7 +158,7 @@ namespace MyExpenses.Portable.ViewModels
         //if (!LoadedAlert)
         //  await ExecuteLoadAlert();
 
-        await expenseService.SyncExpenses();
+        await expenseService.SyncExpensesAsync();
       }
       catch (Exception ex)
       {
@@ -168,37 +168,6 @@ namespace MyExpenses.Portable.ViewModels
       IsBusy = false;
       IsSynced = true;
 
-    }
-
-  
-    /// <summary>
-    /// Gets the current expense alert from the server
-    /// </summary>
-    /// <returns>Alert from server</returns>
-    public async Task<Alert> ExecuteLoadAlert()
-    {
-
-      LoadedAlert = true;
-      try
-      {
-        var client = new HttpClient();
-        client.Timeout = new TimeSpan(0,0,0,5);
-
-        var response = await client.GetStringAsync("https://gist.github.com/jamesmontemagno/a54af53e027308362415/raw/a828b194254b241281aad79cd362c33295fdb183/gistfile1.txt");
-        var alert = await ExpenseService.DeserializeObjectAsync<Alert>(response);
-
-        messageDialog.SendMessage(alert.Details, alert.AlertDateDisplay);
-        return alert;
-      }
-      catch (Exception exception)
-      {
-        Debug.WriteLine("Unable to query and gather expenses");
-      }
-      finally
-      {
-      }
-
-      return null;
     }
   }
 }

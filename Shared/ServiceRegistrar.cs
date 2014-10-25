@@ -25,16 +25,14 @@ using MyExpenses.Portable.Models;
 using MyExpenses.Portable.Services;
 using MyExpenses.Portable.ViewModels;
 using Newtonsoft.Json;
-using SQLite.Net;
-using SQLite.Net.Interop;
 #if __IOS__
-using SQLite.Net.Platform.XamarinIOS;
 using Microsoft.WindowsAzure.MobileServices;
+using Microsoft.WindowsAzure.MobileServices.SQLiteStore;
 #elif __ANDROID__
-using SQLite.Net.Platform.XamarinAndroid;
+using Microsoft.WindowsAzure.MobileServices;
+using Microsoft.WindowsAzure.MobileServices.SQLiteStore;
 #elif WINDOWS_PHONE
-using Windows.Storage;
-using SQLite.Net.Platform.WindowsPhone8;
+
 #endif
 
 namespace MyExpenses.Helpers
@@ -43,31 +41,20 @@ namespace MyExpenses.Helpers
   {
     public static void Startup()
     {
-      SQLiteConnection connection = null;
-      string dbLocation = "expensesDB.db3";
-
 #if __ANDROID__
-      var library = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-      dbLocation = Path.Combine(library, dbLocation);
-      var platform = new SQLitePlatformAndroid();
-      connection = new SQLiteConnection(platform, dbLocation);
       
+      CurrentPlatform.Init();
+      SQLitePCL.CurrentPlatform.Init();
 #elif __IOS__
       CurrentPlatform.Init();
-      var docsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-      var libraryPath = Path.Combine(docsPath, "../Library/");
-      dbLocation = Path.Combine(libraryPath, dbLocation);
-      var platform = new SQLitePlatformIOS();
-      connection = new SQLiteConnection(platform, dbLocation);
-      
-#elif WINDOWS_PHONE
-      var platform = new SQLitePlatformWP8();
-      dbLocation = Path.Combine(ApplicationData.Current.LocalFolder.Path, dbLocation);
-      connection = new SQLiteConnection(platform, dbLocation);
+      SQLitePCL.CurrentPlatform.Init();
 #endif
+
+      var expenseService = new AzureExpenseService();
+      expenseService.Init().Wait();
+
       ServiceContainer.Register<IMessageDialog>(() => new MessageDialog());
-      ServiceContainer.Register<ICloudService>(AzureService.Instance);
-      ServiceContainer.Register<IExpenseService>(()=>new ExpenseService(connection));
+      ServiceContainer.Register<IExpenseService>(() => expenseService);
       ServiceContainer.Register<ExpensesViewModel>();
       ServiceContainer.Register<ExpenseViewModel>();
     }

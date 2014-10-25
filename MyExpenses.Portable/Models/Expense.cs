@@ -16,7 +16,6 @@ using System;
 
 using MyExpenses.Portable.BusinessLayer.Contracts;
 using Newtonsoft.Json;
-using SQLite.Net.Attributes;
 
 namespace MyExpenses.Portable.Models
 {
@@ -34,11 +33,6 @@ namespace MyExpenses.Portable.Models
       IsDirty = true;
     }
 
-    
-
-    [JsonProperty("Id")]
-    public string AzureId { get; set; }
-
     [JsonProperty(PropertyName = "userId")]
     public string UserId { get; set; }
 
@@ -55,20 +49,20 @@ namespace MyExpenses.Portable.Models
     public string Category { get; set; }
     public bool Billable { get; set; }
 
-    [Ignore]
+    [JsonIgnore]
     public string DueDateLongDisplay
     {
       get { return Due.ToLocalTime().ToString("D"); }
     }
 
 
-    [Ignore]
+    [JsonIgnore]
     public string TotalDisplay
     {
       get { return "$" + Total; }
     }
 
-    [Ignore]
+    [JsonIgnore]
     public string DueDateShortDisplay
     {
       get { return Due.ToLocalTime().ToString("d"); }
@@ -81,7 +75,6 @@ namespace MyExpenses.Portable.Models
 
     public void SyncProperties(Expense expense)
     {
-      this.AzureId = expense.AzureId;
       this.Billable = expense.Billable;
       this.Category = expense.Category;
       this.Due = expense.Due;

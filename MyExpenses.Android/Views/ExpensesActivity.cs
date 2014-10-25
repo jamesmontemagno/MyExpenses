@@ -84,7 +84,7 @@ namespace MyExpenses.Android.Views
     {
       base.OnListItemClick(l, v, position, id);
       var intent = new Intent(this, typeof(ExpenseActivity));
-      intent.PutExtra("ID", (int) id);
+      intent.PutExtra("ID",viewModel.Expenses[position].Id);
       StartActivity(intent);
     }
 
@@ -122,7 +122,9 @@ namespace MyExpenses.Android.Views
     /// <returns></returns>
     private async Task Authenticate()
     {
-      var client = AzureService.Instance.MobileService;
+      return;
+
+      var client = AzureExpenseService.Instance.MobileService;
       if (client == null)
         return;
 

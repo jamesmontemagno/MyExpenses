@@ -91,7 +91,8 @@ namespace MyExpenses.iOS.Views
     /// <returns></returns>
     private async Task Authenticate()
     {
-      var client = AzureService.Instance.MobileService;
+      return;
+      var client = AzureExpenseService.Instance.MobileService;
       if (client == null)
         return;
 

@@ -112,7 +112,11 @@ namespace MyExpenses.WindowsPhone.Views
 
     private async System.Threading.Tasks.Task Authenticate()
     {
-      var client = AzureService.Instance.MobileService;
+
+      return;
+
+
+      var client = AzureExpenseService.Instance.MobileService;
       if (client == null)
         return;
 

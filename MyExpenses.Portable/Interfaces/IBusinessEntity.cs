@@ -14,7 +14,8 @@
 //    limitations under the License.using System;
 namespace MyExpenses.Portable.Interfaces {
 	public interface IBusinessEntity {
-		int Id { get; set; }
+		string Id { get; set; }
+    string Version { get; set; }
 	}
 }
 

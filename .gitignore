@@ -17,6 +17,8 @@ local.properties
 .loadpath
 [Pp]ackages/
 [Cc]omponents/
+[Pp]ackages
+[Cc]omponents
 
 # External tool builders
 .externalToolBuilders/

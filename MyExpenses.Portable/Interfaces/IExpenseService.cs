@@ -24,11 +24,14 @@ namespace MyExpenses.Portable.Interfaces
   public interface IExpenseService
   {
 
-    Task<Expense> GetExpense(int id);
-    Task<IEnumerable<Expense>> GetExpenses();
-    Task<bool> SyncExpenses();
-    Task<Expense> SaveExpense(Expense expense);
-    Task<int> DeleteExpense(int id);
+    Task<Expense> GetExpenseAsync(string id);
+    Task<IEnumerable<Expense>> GetExpensesAsync();
+    Task SyncExpensesAsync();
+    Task<Expense> SaveExpenseAsync(Expense expense);
+    Task<string> DeleteExpenseAsync(Expense expense);
+    string UserId { get; }
+
+    Task Init();
 
   }
 }

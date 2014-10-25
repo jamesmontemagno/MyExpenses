@@ -46,16 +46,13 @@ namespace MyExpenses.WindowsPhone
     {
       if (DataContext == null)
       {
-        string selectedIndex;
-        var id = -1;
-        viewModel = ServiceContainer.Resolve<ExpenseViewModel>();
-        if (NavigationContext.QueryString.TryGetValue("selectedItem", out selectedIndex))
-        {
-          id = int.Parse(selectedIndex);
-          
-        }
+        string selectedId;
        
-        await viewModel.Init(id);
+        viewModel = ServiceContainer.Resolve<ExpenseViewModel>();
+        NavigationContext.QueryString.TryGetValue("selectedItem", out selectedId); ;
+        
+       
+        await viewModel.Init(selectedId);
         DataContext = viewModel;
 
         TextBlockExpense.Text = viewModel.Title.ToLower();

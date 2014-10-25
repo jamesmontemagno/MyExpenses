@@ -42,10 +42,10 @@ namespace MyExpenses.Portable.ViewModels
     }
 
     private Expense currentExpense;
-    public async Task Init(int id)
+    public async Task Init(string id)
     {
-      if (id >= 0)
-        currentExpense = await expenseService.GetExpense(id);
+      if (!string.IsNullOrWhiteSpace(id))
+        currentExpense = await expenseService.GetExpenseAsync(id);
       else
         currentExpense = null;
       Init();
@@ -174,7 +174,7 @@ namespace MyExpenses.Portable.ViewModels
       try
       {
         IsBusy = true;
-        await expenseService.SaveExpense(currentExpense);
+        await expenseService.SaveExpenseAsync(currentExpense);
         ServiceContainer.Resolve<ExpensesViewModel>().NeedsUpdate = true;
         CanNavigate = true;
       }

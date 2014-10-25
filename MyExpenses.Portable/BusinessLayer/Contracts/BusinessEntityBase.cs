@@ -14,7 +14,7 @@
 //    limitations under the License.using System;
 
 
-using SQLite.Net.Attributes;
+using Newtonsoft.Json;
 
 namespace MyExpenses.Portable.BusinessLayer.Contracts {
 	/// <summary>
@@ -28,10 +28,11 @@ namespace MyExpenses.Portable.BusinessLayer.Contracts {
 		/// <summary>
 		/// Gets or sets the Database ID.
 		/// </summary>
-		[PrimaryKey, AutoIncrement]
-    public int Id { get; set; }
+     [JsonProperty(PropertyName = "id")]
+    public string Id { get; set; }
 
-    
+     [Microsoft.WindowsAzure.MobileServices.Version]
+     public string Version { get; set; }  
 
   }
 }

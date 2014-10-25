@@ -46,7 +46,7 @@ namespace MyExpenses.Android.Views
 
       dialog = ServiceContainer.Resolve<IMessageDialog>();
 
-      var id = Intent.GetIntExtra("ID", -1);
+      var id = Intent.GetStringExtra("ID");
       viewModel = ServiceContainer.Resolve<ExpenseViewModel>();
       await viewModel.Init(id);
 
