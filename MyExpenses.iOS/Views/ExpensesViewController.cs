@@ -29,7 +29,8 @@ namespace MyExpenses.iOS.Views
   {
     private ExpensesViewModel viewModel;
 
-    public ExpensesViewController() : base(UITableViewStyle.Plain)
+    public ExpensesViewController()
+      : base(UITableViewStyle.Plain)
     {
       Title = "My Expenses";
     }
@@ -37,11 +38,23 @@ namespace MyExpenses.iOS.Views
     public async override void ViewDidLoad()
     {
       base.ViewDidLoad();
-      
+
 
       viewModel = ServiceContainer.Resolve<ExpensesViewModel>();
 
-      viewModel.IsBusyChanged = (busy) =>
+
+      NavigationItem.RightBarButtonItem = new UIBarButtonItem(UIBarButtonSystemItem.Add, delegate
+      {
+        NavigationController.PushViewController(new ExpenseViewController(null), true);
+      });
+
+      await viewModel.ExecuteLoadExpensesCommand();
+
+      TableView.Source = new ExpensesSource(viewModel, this);
+      TableView.ReloadData();
+
+
+      /*viewModel.IsBusyChanged = (busy) =>
       {
         if (busy)
           RefreshControl.BeginRefreshing();
@@ -69,50 +82,64 @@ namespace MyExpenses.iOS.Views
 
       await Authenticate();
       await viewModel.ExecuteLoadExpensesCommand();
-      TableView.ReloadData();
+      TableView.ReloadData();*/
     }
 
-    
 
-    public async override void ViewDidAppear(bool animated)
-    {
-      base.ViewDidAppear(animated);
-
-      if (viewModel.NeedsUpdate)
-      {
-        await viewModel.ExecuteLoadExpensesCommand();
-        TableView.ReloadData();
-      }
-    }
-
-    /// <summary>
-    /// Authenticate the azure client with twitter authentication.
-    /// </summary>
-    /// <returns></returns>
-    private async Task Authenticate()
-    {
-      return;
-      var client = AzureExpenseService.Instance.MobileService;
-      if (client == null)
-        return;
-
-      while (client.CurrentUser == null)
-      {
-        try
-        {
-          client.CurrentUser = await client
-            .LoginAsync(this, MobileServiceAuthenticationProvider.Twitter);
-        }
-        catch (InvalidOperationException ex)
-        {
-          var message = "You must log in. Login Required";
-          var alert = new UIAlertView("Login", message, null, "OK", null);
-          alert.Show();
-        }
-      }
-    }
 
     public class ExpensesSource : UITableViewSource
+    {
+      ExpensesViewModel viewModel;
+      ExpensesViewController viewController;
+      public ExpensesSource(ExpensesViewModel viewModel, ExpensesViewController vc)
+      {
+        this.viewModel = viewModel;
+        viewController = vc;
+
+      }
+
+      private const string ID = "MyCell";
+
+      public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
+      {
+
+        var cell = tableView.DequeueReusableCell(ID);
+
+        if (cell == null)
+        {
+          cell = new UITableViewCell(UITableViewCellStyle.Subtitle, ID);
+        }
+
+        var expense = viewModel.Expenses[indexPath.Row];
+
+        cell.TextLabel.Text = expense.DueDateShortDisplay;
+        cell.DetailTextLabel.Text = expense.Name + " " + expense.TotalDisplay;
+
+        return cell;
+        
+      }
+
+      public override int RowsInSection(UITableView tableView, int section)
+      {
+        return viewModel.Expenses.Count;
+      }
+
+
+      public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
+      {
+        if (viewModel.IsBusy)
+          return;
+
+        var expense = viewModel.Expenses[indexPath.Row];
+
+        viewController.NavigationController.PushViewController(new ExpenseViewController(expense), true);
+      }
+    }
+
+
+
+
+    /*/public class ExpensesSource : UITableViewSource
     {
       private ExpensesViewModel viewModel;
       private string cellIdentifier = "ExpenseCell";
@@ -162,10 +189,49 @@ namespace MyExpenses.iOS.Views
           return;
 
         var expense = viewModel.Expenses[indexPath.Row];
-        controller.NavigationController.PushViewController(new ExpenseViewController(expense), true);
+
+        controller.PresentViewControllerAsync(new ExpenseViewController(expense), true);
+      }
+    }*/
+
+
+    /// <summary>
+    /// Authenticate the azure client with twitter authentication.
+    /// </summary>
+    /// <returns></returns>
+    private async Task Authenticate()
+    {
+      return;
+      var client = AzureExpenseService.Instance.MobileService;
+      if (client == null)
+        return;
+
+      while (client.CurrentUser == null)
+      {
+        try
+        {
+          client.CurrentUser = await client
+            .LoginAsync(this, MobileServiceAuthenticationProvider.Twitter);
+        }
+        catch (InvalidOperationException ex)
+        {
+          var message = "You must log in. Login Required";
+          var alert = new UIAlertView("Login", message, null, "OK", null);
+          alert.Show();
+        }
       }
     }
 
-    
+    public async override void ViewDidAppear(bool animated)
+    {
+      base.ViewDidAppear(animated);
+
+      if (viewModel.NeedsUpdate)
+      {
+        await viewModel.ExecuteLoadExpensesCommand();
+        TableView.ReloadData();
+      }
+    }
+
   }
 }
