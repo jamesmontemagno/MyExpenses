@@ -25,43 +25,70 @@ using MyExpenses.Android.Adapters;
 using MyExpenses.PlatformSpecific;
 using MyExpenses.Portable.Helpers;
 using MyExpenses.Portable.ViewModels;
+using Android.Support.V7.App;
+using Android.Support.V4.Widget;
+using Toolbar = Android.Support.V7.Widget.Toolbar;
+using Android.Util;
 
 namespace MyExpenses.Android.Views
 {
   [Activity(Label = "My Expenses", MainLauncher = true, Icon = "@drawable/ic_launcher")]
-  public class ExpensesActivity : ListActivity
+  public class ExpensesActivity : ActionBarActivity
   {
     private ExpensesViewModel viewModel;
-    private ProgressBar progressBar;
+    private ExpenseAdapter listAdapter;
+    private ListView listView;
+    private SwipeRefreshLayout refresher;
     protected async override void OnCreate(Bundle bundle)
     {
       base.OnCreate(bundle);
 
       // Set our view from the "main" layout resource
       SetContentView(Resource.Layout.view_expenses);
+      var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+      //Toolbar will now take on default actionbar characteristics
+      SetSupportActionBar(toolbar);
+      refresher = FindViewById<SwipeRefreshLayout>(Resource.Id.refresher);
+      refresher.SetColorScheme(Resource.Color.pop);
 
-      progressBar = FindViewById<ProgressBar>(Resource.Id.progressBar);
+      refresher.Refresh += async delegate
+      {
+        if (viewModel.IsBusy)
+          return;
+
+        await viewModel.ExecuteLoadExpensesCommand();
+        RunOnUiThread(() => { listAdapter.NotifyDataSetChanged(); });
+      };
 
       viewModel = ServiceContainer.Resolve<ExpensesViewModel>();
       viewModel.IsBusyChanged = (busy) =>
       {
-        progressBar.Visibility = busy ? ViewStates.Visible : ViewStates.Gone;
+        refresher.Refreshing = busy;
       };
 
-      ListAdapter = new ExpenseAdapter(this, viewModel);
-     
-      ListView.ItemLongClick += async (sender, args) =>
+      listView = FindViewById<ListView>(Resource.Id.list);
+
+      listAdapter = new ExpenseAdapter(this, viewModel);
+      listView.Adapter = listAdapter;
+      listView.ItemLongClick += async (sender, args) =>
       {
         await viewModel.ExecuteDeleteExpenseCommand(viewModel.Expenses[args.Position]);
-        RunOnUiThread(() => ((ExpenseAdapter)ListAdapter).NotifyDataSetChanged());
+        RunOnUiThread(() => listAdapter.NotifyDataSetChanged());
       };
+
+      listView.ItemClick += OnListViewItemClick;
+
+      var typed_value = new TypedValue();
+      Theme.ResolveAttribute(Resource.Attribute.actionBarSize, typed_value, true);
+      refresher.SetProgressViewOffset(false, 0, Resources.GetDimensionPixelSize(typed_value.ResourceId));
 
       await Authenticate();
       await viewModel.ExecuteLoadExpensesCommand();
-      RunOnUiThread(() => ((ExpenseAdapter)ListAdapter).NotifyDataSetChanged());
+      RunOnUiThread(() => listAdapter.NotifyDataSetChanged());
       
       
     }
+
 
     protected async override void OnStart()
     {
@@ -69,20 +96,17 @@ namespace MyExpenses.Android.Views
       
       MyExpensesApplication.CurrentActivity = this;
 
-      
-
       if (viewModel.NeedsUpdate)
       {
         await viewModel.ExecuteLoadExpensesCommand();
-        RunOnUiThread(() => ((ExpenseAdapter) ListAdapter).NotifyDataSetChanged());
+        RunOnUiThread(() => listAdapter.NotifyDataSetChanged());
       }
     }
 
-    protected override void OnListItemClick(ListView l, View v, int position, long id)
+    void OnListViewItemClick(object sender, AdapterView.ItemClickEventArgs e)
     {
-      base.OnListItemClick(l, v, position, id);
       var intent = new Intent(this, typeof(ExpenseActivity));
-      intent.PutExtra("ID",viewModel.Expenses[position].Id);
+      intent.PutExtra("ID",viewModel.Expenses[e.Position].Id);
       StartActivity(intent);
     }
 
@@ -100,9 +124,6 @@ namespace MyExpenses.Android.Views
           var intent = new Intent(this, typeof (ExpenseActivity));
           StartActivity(intent);
           return true;
-        case Resource.Id.menu_refresh:
-          Sync();
-          return true;
       }
       return base.OnOptionsItemSelected(item);
     }
@@ -110,7 +131,7 @@ namespace MyExpenses.Android.Views
     private async Task Sync()
     {
       await viewModel.ExecuteLoadExpensesCommand();
-      RunOnUiThread(() => ((ExpenseAdapter)ListAdapter).NotifyDataSetChanged());
+      RunOnUiThread(() => listAdapter.NotifyDataSetChanged());
     }
 
 

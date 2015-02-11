@@ -26,11 +26,13 @@ using Microsoft.WindowsAzure.MobileServices;
 using MyExpenses.Portable.Helpers;
 using MyExpenses.Portable.Interfaces;
 using MyExpenses.Portable.ViewModels;
+using Android.Support.V7.App;
+using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace MyExpenses.Android.Views
 {
   [Activity(Label = "New Expense", Icon = "@drawable/ic_launcher")]
-  public class ExpenseActivity : Activity
+  public class ExpenseActivity : ActionBarActivity
   {
     private ExpenseViewModel viewModel;
     private EditText notes, name, total;
@@ -43,18 +45,20 @@ namespace MyExpenses.Android.Views
       base.OnCreate(bundle);
 
       SetContentView(Resource.Layout.view_expense);
-
+      var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+      //Toolbar will now take on default actionbar characteristics
+      SetSupportActionBar(toolbar);
       dialog = ServiceContainer.Resolve<IMessageDialog>();
 
       var id = Intent.GetStringExtra("ID");
       viewModel = ServiceContainer.Resolve<ExpenseViewModel>();
       await viewModel.Init(id);
 
-      this.ActionBar.Title = viewModel.Title;
+      this.SupportActionBar.Title = viewModel.Title;
       viewModel.IsBusyChanged = (busy) =>
       {
         if (busy)
-          AndHUD.Shared.Show(this, "Loading...");
+          AndHUD.Shared.Show(this, "Saving...");
         else
           AndHUD.Shared.Dismiss(this);
       };

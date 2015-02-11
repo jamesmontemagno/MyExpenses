@@ -32,9 +32,17 @@ namespace MyExpenses.iOS
       window = new UIWindow(UIScreen.MainScreen.Bounds);
       ServiceRegistrar.Startup();
 
+      UINavigationBar.Appearance.SetTitleTextAttributes(new UITextAttributes
+      {
+        TextColor = UIColor.White
+      });
+
       navigationController = new UINavigationController(new ExpensesViewController());
       // If you have defined a view, add it here:
-       window.RootViewController  = navigationController;
+      window.RootViewController  = navigationController;
+
+      navigationController.NavigationBar.TintColor = UIColor.White;
+      navigationController.NavigationBar.BarTintColor = UIColor.FromRGB(52,152,219);
 
       // make the window visible
       window.MakeKeyAndVisible();

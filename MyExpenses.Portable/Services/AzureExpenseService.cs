@@ -86,7 +86,7 @@ namespace MyExpenses.PlatformSpecific
       try
       {
         await MobileService.SyncContext.PushAsync();
-        await expenseTable.PullAsync();
+        await expenseTable.PullAsync("allItems", expenseTable.CreateQuery());
       }
       catch (MobileServiceInvalidOperationException e)
       {

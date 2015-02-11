@@ -39,22 +39,10 @@ namespace MyExpenses.iOS.Views
     {
       base.ViewDidLoad();
 
-
+      NavigationController.NavigationBar.BarStyle = UIBarStyle.Black;
       viewModel = ServiceContainer.Resolve<ExpensesViewModel>();
 
-
-      NavigationItem.RightBarButtonItem = new UIBarButtonItem(UIBarButtonSystemItem.Add, delegate
-      {
-        NavigationController.PushViewController(new ExpenseViewController(null), true);
-      });
-
-      await viewModel.ExecuteLoadExpensesCommand();
-
-      TableView.Source = new ExpensesSource(viewModel, this);
-      TableView.ReloadData();
-
-
-      /*viewModel.IsBusyChanged = (busy) =>
+      viewModel.IsBusyChanged = (busy) =>
       {
         if (busy)
           RefreshControl.BeginRefreshing();
@@ -82,64 +70,11 @@ namespace MyExpenses.iOS.Views
 
       await Authenticate();
       await viewModel.ExecuteLoadExpensesCommand();
-      TableView.ReloadData();*/
+      TableView.ReloadData();
     }
-
 
 
     public class ExpensesSource : UITableViewSource
-    {
-      ExpensesViewModel viewModel;
-      ExpensesViewController viewController;
-      public ExpensesSource(ExpensesViewModel viewModel, ExpensesViewController vc)
-      {
-        this.viewModel = viewModel;
-        viewController = vc;
-
-      }
-
-      private const string ID = "MyCell";
-
-      public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
-      {
-
-        var cell = tableView.DequeueReusableCell(ID);
-
-        if (cell == null)
-        {
-          cell = new UITableViewCell(UITableViewCellStyle.Subtitle, ID);
-        }
-
-        var expense = viewModel.Expenses[indexPath.Row];
-
-        cell.TextLabel.Text = expense.DueDateShortDisplay;
-        cell.DetailTextLabel.Text = expense.Name + " " + expense.TotalDisplay;
-
-        return cell;
-        
-      }
-
-      public override int RowsInSection(UITableView tableView, int section)
-      {
-        return viewModel.Expenses.Count;
-      }
-
-
-      public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
-      {
-        if (viewModel.IsBusy)
-          return;
-
-        var expense = viewModel.Expenses[indexPath.Row];
-
-        viewController.NavigationController.PushViewController(new ExpenseViewController(expense), true);
-      }
-    }
-
-
-
-
-    /*/public class ExpensesSource : UITableViewSource
     {
       private ExpensesViewModel viewModel;
       private string cellIdentifier = "ExpenseCell";
@@ -190,9 +125,9 @@ namespace MyExpenses.iOS.Views
 
         var expense = viewModel.Expenses[indexPath.Row];
 
-        controller.PresentViewControllerAsync(new ExpenseViewController(expense), true);
+        controller.NavigationController.PushViewController(new ExpenseViewController(expense), true);
       }
-    }*/
+    }
 
 
     /// <summary>

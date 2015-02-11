@@ -5,12 +5,7 @@
   <item
          android:id="@+id/menu_new_expense"
          android:icon="@drawable/ic_action_content_new"
-         android:showAsAction="always"
+         local:showAsAction="always"
          android:title="@string/menu_new_expense" />
   
-  <item
-          android:id="@+id/menu_refresh"
-          android:icon="@drawable/ic_action_refresh"
-          android:showAsAction="always"
-          android:title="@string/menu_refresh" />
 </menu>

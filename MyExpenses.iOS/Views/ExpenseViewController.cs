@@ -56,6 +56,7 @@ namespace MyExpenses.iOS.Views
     public override void ViewDidLoad()
     {
       base.ViewDidLoad();
+      NavigationController.NavigationBar.BarStyle = UIBarStyle.Black;
       var title = expense == null ? "New Expense" : "Edit Expense";
       this.Root = new RootElement(title)
       {

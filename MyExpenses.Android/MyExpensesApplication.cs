@@ -19,7 +19,7 @@ using Microsoft.WindowsAzure.MobileServices;
 
 namespace MyExpenses.Android
 {
-  [Application(Theme = "@android:style/Theme.Holo.Light") ]
+  [Application(Theme = "@style/MyTheme") ]
   public class MyExpensesApplication : Application
   {
     public static Activity CurrentActivity { get; set; }
@@ -34,7 +34,6 @@ namespace MyExpenses.Android
       base.OnCreate();
       CurrentPlatform.Init();
       ServiceRegistrar.Startup();
-      
     }
   }
 }
