@@ -118,12 +118,12 @@ namespace MyExpenses.Portable.Services
 
     public string UserId
     {
-      get { return string.Empty; ; }
+      get { return string.Empty; }
     }
 
     public Task Init()
     {
-      throw new NotImplementedException();
+      //throw new NotImplementedException();
     }
   }
 }
