@@ -19,7 +19,7 @@ using System.Runtime.Remoting.Messaging;
 using BigTed;
 using Microsoft.WindowsAzure.MobileServices;
 using MonoTouch.Dialog;
-using MonoTouch.UIKit;
+using UIKit;
 using MyExpenses.Portable.Helpers;
 using MyExpenses.Portable.Interfaces;
 using MyExpenses.Portable.Models;

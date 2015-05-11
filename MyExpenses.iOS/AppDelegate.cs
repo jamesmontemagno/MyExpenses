@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.WindowsAzure.MobileServices;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using MyExpenses.Helpers;
 using MyExpenses.iOS.Views;
 
@@ -12,13 +12,17 @@ namespace MyExpenses.iOS
   // The UIApplicationDelegate for the application. This class is responsible for launching the 
   // User Interface of the application, as well as listening (and optionally responding) to 
   // application events from iOS.
-  [Register("AppDelegate")]
+  [Foundation.Register("AppDelegate")]
   public partial class AppDelegate : UIApplicationDelegate
   {
 
     // class-level declarations
-    UIWindow window;
-    private UINavigationController navigationController;
+    public override UIWindow Window
+    {
+      get;
+      set;
+    }
+    
     //
     // This method is invoked when the application has loaded and is ready to run. In this 
     // method you should instantiate the window, load the UI into it and then make the window
@@ -29,25 +33,20 @@ namespace MyExpenses.iOS
     public override bool FinishedLaunching(UIApplication app, NSDictionary options)
     {
       // create a new window instance based on the screen size
-      window = new UIWindow(UIScreen.MainScreen.Bounds);
-      ServiceRegistrar.Startup();
+       ServiceRegistrar.Startup();
 
       UINavigationBar.Appearance.SetTitleTextAttributes(new UITextAttributes
       {
         TextColor = UIColor.White
       });
 
-      navigationController = new UINavigationController(new ExpensesViewController());
-      // If you have defined a view, add it here:
-      window.RootViewController  = navigationController;
+      UINavigationBar.Appearance.TintColor = UIColor.White;
+      UINavigationBar.Appearance.BarTintColor = UIColor.FromRGB(52,152,219);
 
-      navigationController.NavigationBar.TintColor = UIColor.White;
-      navigationController.NavigationBar.BarTintColor = UIColor.FromRGB(52,152,219);
-
-      // make the window visible
-      window.MakeKeyAndVisible();
+     
 
       return true;
     }
+
   }
 }

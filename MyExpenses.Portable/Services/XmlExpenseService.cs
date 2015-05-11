@@ -67,6 +67,19 @@ namespace MyExpenses.Portable.Services
       if(!string.IsNullOrWhiteSpace(json))
         Expenses = DeserializeObject<List<Expense>>(json);
 
+      if(Expenses.Count == 0)
+      {
+        var expense =  new Expense
+          {
+            Billable = true,
+            Category = "Uncategorized",
+            Name = "DevWeek 2015 Flight",
+            Total = "1000"
+          };
+        await SaveExpenseAsync(expense);
+        Expenses.Add(expense); ;
+      }
+
       return Expenses;
     }
 
@@ -123,7 +136,7 @@ namespace MyExpenses.Portable.Services
 
     public Task Init()
     {
-      //throw new NotImplementedException();
+      throw new NotImplementedException();
     }
   }
 }

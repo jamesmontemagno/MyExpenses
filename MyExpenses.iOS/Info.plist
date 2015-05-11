@@ -11,15 +11,13 @@
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
 	<key>MinimumOSVersion</key>
-	<string>7.0</string>
+	<string>8.2</string>
 	<key>CFBundleDisplayName</key>
 	<string>My Expenses</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.xamarin.myexpenses</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
-	<key>NSMainNibFile</key>
-	<string></string>
 	<key>NSMainNibFile~ipad</key>
 	<string></string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
@@ -29,7 +27,7 @@
 		<string>Icon-60@2x.png</string>
 	</array>
 	<key>CFBundleShortVersionString</key>
-	<string></string>
+	<string>1</string>
 	<key>UIStatusBarTintParameters</key>
 	<dict>
 		<key>UINavigationBar</key>
@@ -42,5 +40,7 @@
 	</dict>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleBlackTranslucent</string>
+	<key>UIMainStoryboardFile</key>
+	<string>MainStoryboard</string>
 </dict>
 </plist>

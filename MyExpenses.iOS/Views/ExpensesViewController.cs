@@ -16,8 +16,8 @@
 using System;
 using System.Threading.Tasks;
 using Microsoft.WindowsAzure.MobileServices;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using MyExpenses.PlatformSpecific;
 using MyExpenses.Portable.Helpers;
 using MyExpenses.Portable.Services;
@@ -85,9 +85,9 @@ namespace MyExpenses.iOS.Views
         this.controller = controller;
       }
 
-      public override int RowsInSection(UITableView tableview, int section)
+      public override nint RowsInSection(UITableView tableview, nint section)
       {
-        return viewModel.Expenses.Count;
+        return (nint)viewModel.Expenses.Count;
       }
 
       public override UITableViewCellEditingStyle EditingStyleForRow(UITableView tableView, NSIndexPath indexPath)
