@@ -22,8 +22,8 @@ namespace MyExpenses.PlatformSpecific
     {
      //comment back in to enable Azure Mobile Services.
      MobileService = new MobileServiceClient(
-       "https://" + "dotnetrocks" + ".azure-mobile.net/",
-       "crxRndhkdBSjxbvYgzpGuElxmgvWfz81");
+       "https://" + "YOUR-SITE" + ".azure-mobile.net/",
+       "YOUR-API-KEY");
     }
 
     
