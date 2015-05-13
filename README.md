@@ -1,7 +1,11 @@
 My Expenses
 ==========
 
-My Expenses Cross Platform Demo - VSToolbox
+## Online Offline Azure Mobile Services Sync
+To see the latest version including Azure Mobile Services Online/Offline Sync see:
+https://github.com/jamesmontemagno/MyExpenses-Sync
+
+## My Expenses Cross Platform Demo - VSToolbox
 
 Videos are available on Channel 9:
 
