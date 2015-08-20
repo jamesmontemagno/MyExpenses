@@ -33,7 +33,7 @@ namespace MyExpenses.Tests.Helpers
 
     public Task<IEnumerable<Portable.Models.Expense>> GetExpenses()
     {
-      return Task.Run(() => (IEnumerable<Expense>)Expenses);
+        return Task.FromResult<IEnumerable<Expense>>(Expenses);
     }
 
     public async Task<Portable.Models.Expense> SaveExpense(Portable.Models.Expense expense)

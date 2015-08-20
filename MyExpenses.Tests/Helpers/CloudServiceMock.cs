@@ -12,17 +12,17 @@ namespace MyExpenses.Tests.Helpers
   {
     public Task InsertExpenseAsync(Portable.Models.Expense expense)
     {
-      return new Task(() => { });
+        return Task.FromResult<object>(null);
     }
 
     public Task UpdateExpenseAsync(Portable.Models.Expense expense)
     {
-      return new Task(() => { });
+        return Task.FromResult<object>(null);
     }
 
     public Task<IEnumerable<Portable.Models.Expense>> GetExpensesAsync()
     {
-      return new Task<IEnumerable<Expense>>(()=> new List<Expense>());
+        return Task.FromResult(Enumerable.Empty<Expense>());
     }
   }
 }
