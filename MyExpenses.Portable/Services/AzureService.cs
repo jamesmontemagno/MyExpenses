@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.WindowsAzure.MobileServices;
 using MyExpenses.Portable.Interfaces;
 using MyExpenses.Portable.Models;
+using System.Linq;
 
 namespace MyExpenses.PlatformSpecific
 {
@@ -29,7 +30,10 @@ namespace MyExpenses.PlatformSpecific
     public Task InsertExpenseAsync(Expense expense)
     {
       if (expenseTable == null)
-        return Task.Factory.StartNew(() => { expense.UserId = UserId; });
+      {
+        expense.UserId = UserId;
+        return Task.FromResult<object>(null);
+      }
       
       return expenseTable.InsertAsync(expense);
     }
@@ -37,16 +41,18 @@ namespace MyExpenses.PlatformSpecific
     public Task UpdateExpenseAsync(Expense expense)
     {
       if (expenseTable == null)
-        return Task.Factory.StartNew(() => { expense.UserId = UserId; });
+      {
+        expense.UserId = UserId;
+        return Task.FromResult<object>(null);
+      }
 
       return expenseTable.UpdateAsync(expense);
     }
 
     public Task<IEnumerable<Expense>> GetExpensesAsync()
     {
-      if (expenseTable == null)
-        return Task<IEnumerable<Expense>>.Factory.StartNew(() => { return new List<Expense>(); });
-
+            if (expenseTable == null)
+                return Task.FromResult(Enumerable.Empty<Expense>()); 
 
       return expenseTable.ToEnumerableAsync();
     }
