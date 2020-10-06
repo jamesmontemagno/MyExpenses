@@ -9,11 +9,11 @@ https://github.com/jamesmontemagno/MyExpenses-Sync
 
 Videos are available on Channel 9:
 
-[Part 1: Cross Platform Mobile Development with Xamarin](http://channel9.msdn.com/Shows/Visual-Studio-Toolbox/Cross-Platform-Development-With-Xamarin)
+[Part 1: Cross Platform Mobile Development with Xamarin](https://channel9.msdn.com/Shows/Visual-Studio-Toolbox/Cross-Platform-Development-With-Xamarin?WT.mc_id=myexpenses-github-jamont)
 
-[Part 2: Using Portable Class Libraries with Xamarin](http://channel9.msdn.com/Shows/Visual-Studio-Toolbox/Using-Portable-Class-Libraries-with-Xamarin)
+[Part 2: Using Portable Class Libraries with Xamarin](https://channel9.msdn.com/Shows/Visual-Studio-Toolbox/Using-Portable-Class-Libraries-with-Xamarin?WT.mc_id=myexpenses-github-jamont)
 
-[Part 3: Cross Platform Mobile Apps with Xamarin and Azure Mobile Services](http://channel9.msdn.com/Shows/Visual-Studio-Toolbox/Cross-Platform-Mobile-Apps-with-Xamarin-and-Azure-Mobile-Services)
+[Part 3: Cross Platform Mobile Apps with Xamarin and Azure Mobile Services](https://channel9.msdn.com/Shows/Visual-Studio-Toolbox/Cross-Platform-Mobile-Apps-with-Xamarin-and-Azure-Mobile-Services?WT.mc_id=myexpenses-github-jamont)
 
 ## My Expenses
 
@@ -23,7 +23,7 @@ Written in C# with ([Xamarin](http://www.xamarin.com))  **Created in Visual Stud
 
 Open Source Project by ([@JamesMontemagno](http://www.twitter.com/jamesmontemagno)) 
 
-For Windows Phone you must install SQLite for Windows Phone Extension: http://visualstudiogallery.msdn.microsoft.com/cd120b42-30f4-446e-8287-45387a4f40b7
+For Windows Phone you must install SQLite for Windows Phone Extension: https://visualstudiogallery.msdn.microsoft.com/cd120b42-30f4-446e-8287-45387a4f40b7?WT.mc_id=myexpenses-github-jamont
 
 ** For Azure Mobile Services Integration please read the setup at the bottom of this page! **
 
@@ -61,9 +61,9 @@ Now in PCL form with: https://github.com/oysteinkrog/Sqlite.net-pcl
 ### Azure Mobile Services Integration
 
 * Create a new Azure Mobile Services Table Called "Expense"
-* Follow this guide to setup the Table for Authentication: http://www.windowsazure.com/en-us/develop/mobile/tutorials/get-started-with-users-dotnet/
+* Follow this guide to setup the Table for Authentication: https://www.windowsazure.com/develop/mobile/tutorials/get-started-with-users-dotnet/?WT.mc_id=myexpenses-github-jamont
 
-* Setup Azure Scripts for Insert, Read, Update: http://www.windowsazure.com/en-us/develop/mobile/tutorials/authorize-users-in-scripts-dotnet/
+* Setup Azure Scripts for Insert, Read, Update: https://www.windowsazure.com/develop/mobile/tutorials/authorize-users-in-scripts-dotnet/?WT.mc_id=myexpenses-github-jamont
 
 * Setup Twitter App for Authentication: http://www.dotnetcurry.com/ShowArticle.aspx?ID=860
 
